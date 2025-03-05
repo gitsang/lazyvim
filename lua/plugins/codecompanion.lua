@@ -8,6 +8,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+      log_level = "DEBUG",
       strategies = {
         chat = {
           adapter = "worklink",
@@ -50,9 +51,6 @@ return {
         inline = {
           adapter = "worklink",
         },
-      },
-      opts = {
-        log_level = "DEBUG",
       },
       adapters = {
         worklink = function()
