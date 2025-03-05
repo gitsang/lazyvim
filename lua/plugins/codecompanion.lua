@@ -6,9 +6,20 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
+      "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+      { -- Optional: For prettier markdown rendering
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "codecompanion" },
+      },
+      { -- Optional: Improves `vim.ui.select`
+        "stevearc/dressing.nvim",
+        opts = {},
+      },
     },
     opts = {
       log_level = "DEBUG",
+      language = "Chinese",
       strategies = {
         chat = {
           adapter = "worklink",
@@ -64,7 +75,7 @@ return {
             },
             schema = {
               model = {
-                default = "gpt-4o",
+                default = "deepseek-r1",
               },
             },
           })
@@ -87,20 +98,6 @@ return {
           opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
           provider = "default", -- default|mini_diff
         },
-      },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
-  },
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    opts = {
-      preview = {
-        filetypes = { "markdown", "codecompanion" },
-        ignore_buftypes = {},
       },
     },
   },
