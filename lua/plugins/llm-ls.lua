@@ -3,6 +3,7 @@ local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/vars/secret.lua"
 return {
   {
     "huggingface/llm.nvim",
+    enabled = false,
     opts = {
       backend = "ollama",
       url = "http://10.5.204.206:11434",

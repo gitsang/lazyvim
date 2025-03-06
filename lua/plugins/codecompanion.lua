@@ -3,6 +3,7 @@ local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/vars/secret.lua"
 return {
   {
     "olimorris/codecompanion.nvim",
+    config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -18,8 +19,11 @@ return {
       },
     },
     opts = {
-      log_level = "TRACE",
-      language = "中文",
+      opts = {
+        log_level = "TRACE",
+        language = "中文",
+        system_prompt = require("utils.prompts.system-prompt"),
+      },
       strategies = {
         chat = {
           adapter = "worklink_deepseek",
@@ -98,8 +102,19 @@ return {
             },
           })
         end,
+        local_ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            env = {
+              url = "http://10.5.204.206:11434",
+            },
+            schema = {
+              model = {
+                default = "qwen2.5-coder:7b",
+              },
+            },
+          })
+        end,
       },
-      system_prompt = require("utils.prompts.system-prompt"),
       prompt_library = {
         ["Explain in Chinese"] = require("utils.prompts.explain-in-chinese"),
         ["Fix in Chinese"] = require("utils.prompts.fix-in-chinese"),
