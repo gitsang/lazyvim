@@ -1,4 +1,41 @@
-local config = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/plugins.conf/codecompanion.lua")()
+local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/plugins.conf/secret.lua")()
+
+local worklink_deepseek = function(name, model)
+  return require("codecompanion.adapters").extend("deepseek", {
+    name = name,
+    env = {
+      url = "https://worklink.yealink.com/llmproxy",
+      api_key = secret.api_key,
+      chat_url = "/v1/chat/completions",
+      models_endpoint = "/v1/models",
+    },
+    schema = {
+      model = {
+        default = model,
+        choices = {
+          [model] = { opts = { can_reason = true } },
+        },
+      },
+    },
+  })
+end
+
+local worklink_openai = function(name, model)
+  return require("codecompanion.adapters").extend("openai_compatible", {
+    name = name,
+    env = {
+      url = "https://worklink.yealink.com/llmproxy",
+      api_key = secret.api_key,
+      chat_url = "/v1/chat/completions",
+      models_endpoint = "/v1/models",
+    },
+    schema = {
+      model = {
+        default = model,
+      },
+    },
+  })
+end
 
 return {
   {
@@ -22,7 +59,7 @@ return {
       language = "Chinese",
       strategies = {
         chat = {
-          adapter = "worklink",
+          adapter = "worklink_deepseek_r1",
           keymaps = {
             send = {
               modes = { n = "<C-s>", i = "<C-s>" },
@@ -60,26 +97,12 @@ return {
           },
         },
         inline = {
-          adapter = "worklink",
+          adapter = "worklink_deepseek_r1",
         },
       },
       adapters = {
-        worklink = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            name = "worklink",
-            env = {
-              url = config.url,
-              api_key = config.api_key,
-              chat_url = "/v1/chat/completions",
-              models_endpoint = "/v1/models",
-            },
-            schema = {
-              model = {
-                default = "gpt-4o",
-              },
-            },
-          })
-        end,
+        worklink_deepseek_r1 = worklink_deepseek("deepseek-r1@worklink", "deepseek-r1"),
+        worklink_gpt_4o = worklink_openai("gpt_4o@worklink", "gpt-4o"),
       },
       display = {
         chat = {
