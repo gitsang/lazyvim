@@ -1,42 +1,5 @@
 local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/plugins.conf/secret.lua")()
 
-local worklink_deepseek = function(name, model)
-  return require("codecompanion.adapters").extend("deepseek", {
-    name = name,
-    env = {
-      url = "https://worklink.yealink.com/llmproxy",
-      api_key = secret.api_key,
-      chat_url = "/v1/chat/completions",
-      models_endpoint = "/v1/models",
-    },
-    schema = {
-      model = {
-        default = model,
-        choices = {
-          [model] = { opts = { can_reason = true } },
-        },
-      },
-    },
-  })
-end
-
-local worklink_openai = function(name, model)
-  return require("codecompanion.adapters").extend("openai_compatible", {
-    name = name,
-    env = {
-      url = "https://worklink.yealink.com/llmproxy",
-      api_key = secret.api_key,
-      chat_url = "/v1/chat/completions",
-      models_endpoint = "/v1/models",
-    },
-    schema = {
-      model = {
-        default = model,
-      },
-    },
-  })
-end
-
 return {
   {
     "olimorris/codecompanion.nvim",
@@ -47,7 +10,7 @@ return {
       "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
       { -- Optional: For prettier markdown rendering
         "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "markdown", "codecompanion" },
+        ft = { "codecompanion" },
       },
       { -- Optional: Improves `vim.ui.select`
         "stevearc/dressing.nvim",
@@ -59,7 +22,7 @@ return {
       language = "Chinese",
       strategies = {
         chat = {
-          adapter = "worklink_deepseek_r1",
+          adapter = "worklink_deepseek",
           keymaps = {
             send = {
               modes = { n = "<C-s>", i = "<C-s>" },
@@ -97,12 +60,44 @@ return {
           },
         },
         inline = {
-          adapter = "worklink_deepseek_r1",
+          adapter = "worklink_deepseek",
         },
       },
       adapters = {
-        worklink_deepseek_r1 = worklink_deepseek("deepseek-r1@worklink", "deepseek-r1"),
-        worklink_gpt_4o = worklink_openai("gpt_4o@worklink", "gpt-4o"),
+        worklink_deepseek = function()
+          return require("codecompanion.adapters").extend("deepseek", {
+            url = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
+            env = {
+              api_key = secret.worklink_llm,
+            },
+            schema = {
+              model = {
+                default = "deepseek-r1",
+                choices = {
+                  ["deepseek-r1"] = { opts = { can_reason = true } },
+                  "deepseek-v3",
+                },
+              },
+            },
+          })
+        end,
+        worklink_openai = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            url = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
+            env = {
+              api_key = secret.worklink_llm,
+            },
+            schema = {
+              model = {
+                default = "gpt-4o",
+                choices = {
+                  "gpt-4o",
+                  "gpt-4o-mini",
+                },
+              },
+            },
+          })
+        end,
       },
       display = {
         chat = {
@@ -110,7 +105,7 @@ return {
           show_header_separator = false, -- Show header separators in the chat buffer? Set this to false if you're using an external markdown formatting plugin
           separator = "─", -- The separator between the different messages in the chat buffer
           show_references = true, -- Show references (from slash commands and variables) in the chat buffer?
-          show_settings = true, -- Show LLM settings at the top of the chat buffer?
+          show_settings = false, -- Show LLM settings at the top of the chat buffer?
           show_token_count = true, -- Show the token count for each response?
           start_in_insert_mode = false, -- Open the chat buffer in insert mode?
         },
