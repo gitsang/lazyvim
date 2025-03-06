@@ -39,7 +39,7 @@ return {
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[请解释 buffer %d 中的这段代码:
+          [[请用中文解释 buffer %d 中的这段代码:
 
 ```%s
 %s

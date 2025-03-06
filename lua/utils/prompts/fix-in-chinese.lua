@@ -47,7 +47,7 @@ return {
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[请修复 buffer %d 中的代码:
+          [[请修复 buffer %d 中的代码，并用中文解释修复方式:
 ```%s
 %s
 ```
