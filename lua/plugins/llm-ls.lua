@@ -4,10 +4,13 @@ return {
   {
     "huggingface/llm.nvim",
     opts = {
-      backend = "openai",
-      url = "https://api.siliconflow.cn/v1",
-      api_token = secret.siliconflow,
-      model = "Qwen/Qwen2.5-Coder-7B-Instruct",
+      backend = "ollama",
+      url = "http://10.5.204.206:11434",
+      model = "qwen2.5-coder:7b",
+      -- backend = "openai",
+      -- url = "https://api.siliconflow.cn/v1",
+      -- api_token = secret.siliconflow,
+      -- model = "Qwen/Qwen2.5-Coder-7B-Instruct",
       tokens_to_clear = { "<|endoftext|>" },
       fim = {
         enabled = false,
