@@ -18,8 +18,8 @@ return {
       },
     },
     opts = {
-      log_level = "DEBUG",
-      language = "Chinese",
+      log_level = "TRACE",
+      language = "中文",
       strategies = {
         chat = {
           adapter = "worklink_deepseek",
@@ -72,7 +72,7 @@ return {
             },
             schema = {
               model = {
-                default = "deepseek-r1",
+                default = "deepseek-v3",
                 choices = {
                   ["deepseek-r1"] = { opts = { can_reason = true } },
                   "deepseek-v3",
