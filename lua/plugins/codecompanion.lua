@@ -1,4 +1,4 @@
-local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/plugins.conf/secret.lua")()
+local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/vars/secret.lua")()
 
 return {
   {
@@ -98,6 +98,10 @@ return {
             },
           })
         end,
+      },
+      prompt_library = {
+        ["Explain in Chinese"] = require("utils.prompts.explain-in-chinese"),
+        ["Fix in Chinese"] = require("utils.prompts.fix-in-chinese"),
       },
       display = {
         chat = {
