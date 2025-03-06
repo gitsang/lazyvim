@@ -20,6 +20,7 @@ return {
     },
     opts = {
       opts = {
+        -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
         language = "中文",
         system_prompt = require("utils.prompts.system-prompt"),

@@ -51,7 +51,10 @@ return {
         bin_path = "/home/debian/.local/src/llm-ls/target/release/llm-ls",
         host = nil,
         port = nil,
-        cmd_env = { LLM_LOG_LEVEL = "DEBUG" },
+        cmd_env = {
+          -- ~/.cache/llm_ls/llm-ls.log
+          LLM_LOG_LEVEL = "DEBUG",
+        },
         version = "0.5.3",
       },
       tokenizer = nil,
