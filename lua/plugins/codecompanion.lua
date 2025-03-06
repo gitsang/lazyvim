@@ -99,6 +99,7 @@ return {
           })
         end,
       },
+      system_prompt = require("utils.prompts.system-prompt"),
       prompt_library = {
         ["Explain in Chinese"] = require("utils.prompts.explain-in-chinese"),
         ["Fix in Chinese"] = require("utils.prompts.fix-in-chinese"),
