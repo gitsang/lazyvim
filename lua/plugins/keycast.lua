@@ -3,7 +3,7 @@ return {
     "tamton-aquib/keys.nvim",
     enabled = true,
     opts = {
-      enable_on_startup = true,
+      enable_on_startup = false,
       win_opts = {
         width = 25,
       },
