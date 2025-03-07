@@ -1,5 +1,3 @@
-local secret = loadfile(os.getenv("HOME") .. "/.config/nvim/lua/vars/secret.lua")()
-
 return {
   {
     "olimorris/codecompanion.nvim",
@@ -68,54 +66,7 @@ return {
           adapter = "worklink_deepseek",
         },
       },
-      adapters = {
-        worklink_deepseek = function()
-          return require("codecompanion.adapters").extend("deepseek", {
-            url = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
-            env = {
-              api_key = secret.worklink_llm,
-            },
-            schema = {
-              model = {
-                default = "deepseek-v3",
-                choices = {
-                  ["deepseek-r1"] = { opts = { can_reason = true } },
-                  "deepseek-v3",
-                },
-              },
-            },
-          })
-        end,
-        worklink_openai = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            url = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
-            env = {
-              api_key = secret.worklink_llm,
-            },
-            schema = {
-              model = {
-                default = "gpt-4o",
-                choices = {
-                  "gpt-4o",
-                  "gpt-4o-mini",
-                },
-              },
-            },
-          })
-        end,
-        local_ollama = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            env = {
-              url = "http://10.5.204.206:11434",
-            },
-            schema = {
-              model = {
-                default = "qwen2.5-coder:7b",
-              },
-            },
-          })
-        end,
-      },
+      adapters = require("vars.codecompanion-adapter"),
       prompt_library = {
         ["Explain in Chinese"] = require("utils.prompts.explain-in-chinese"),
         ["Fix in Chinese"] = require("utils.prompts.fix-in-chinese"),
