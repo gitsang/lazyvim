@@ -25,7 +25,7 @@ return {
       },
       strategies = {
         chat = {
-          adapter = "worklink_deepseek",
+          adapter = require("vars.environment").codecompanion.chat.adapter,
           keymaps = {
             send = {
               modes = { n = "<C-s>", i = "<C-s>" },
@@ -63,7 +63,7 @@ return {
           },
         },
         inline = {
-          adapter = "worklink_deepseek",
+          adapter = require("vars.environment").codecompanion.inline.adapter,
         },
       },
       adapters = require("vars.codecompanion-adapter"),
