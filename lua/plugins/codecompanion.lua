@@ -7,10 +7,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
       "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
-      { -- Optional: For prettier markdown rendering
-        "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "codecompanion" },
-      },
+      "MeanderingProgrammer/render-markdown.nvim",
       { -- Optional: Improves `vim.ui.select`
         "stevearc/dressing.nvim",
         opts = {},
@@ -58,6 +55,39 @@ return {
               end,
               opts = {
                 contains_code = false,
+              },
+            },
+            ["diagnostics"] = {
+              description = "Show diagnostics messages",
+              ---@param chat CodeCompanion.Chat
+              callback = function(chat)
+                local cursor_pos = vim.api.nvim_win_get_cursor(0) -- 获取当前光标位置 (行号, 列号)
+                local line_num = cursor_pos[1] - 1 -- 转换为 0-based 行号
+                local diagnostics = vim.diagnostic.get(0) -- 获取当前缓冲区的诊断信息
+
+                -- 过滤出与光标所在行相关的诊断信息
+                local line_diagnostics = {}
+                for _, diagnostic in ipairs(diagnostics) do
+                  if diagnostic.lnum == line_num then
+                    table.insert(
+                      line_diagnostics,
+                      string.format("Line %d: %s: %s", diagnostic.lnum + 1, diagnostic.severity, diagnostic.message)
+                    )
+                  end
+                end
+
+                if #line_diagnostics > 0 then
+                  chat:add_reference({ content = table.concat(line_diagnostics, "\n") }, "diagnostics", "<diagnostics>")
+                else
+                  return vim.notify(
+                    string.format("No diagnostics available for line %d", line_num),
+                    vim.log.levels.INFO,
+                    { title = "CodeCompanion" }
+                  )
+                end
+              end,
+              opts = {
+                contains_code = true,
               },
             },
           },

@@ -13,7 +13,7 @@ return {
     is_slash_cmd = false,
     modes = { "v" },
     short_name = "fix-in-chinese",
-    auto_submit = true,
+    auto_submit = false,
     user_prompt = false,
     stop_context_insertion = true,
   },
@@ -45,16 +45,29 @@ return {
       role = constants.USER_ROLE,
       content = function(context)
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+        local diagnostics = vim.diagnostic.get(context.bufnr, { lnum = context.start_line - 1 })
+
+        local diagnostic_messages = {}
+        for _, diagnostic in ipairs(diagnostics) do
+          table.insert(diagnostic_messages, diagnostic.message)
+        end
 
         return fmt(
-          [[请修复 buffer %d 中的代码，并用中文解释修复方式:
+          [[@editor #buffer
+
+请修复 buffer %d 中的代码，并用中文解释修复方式:
+
 ```%s
 %s
 ```
+
+诊断信息：
+%s
 ]],
           context.bufnr,
           context.filetype,
-          code
+          code,
+          table.concat(diagnostic_messages, "\n")
         )
       end,
       opts = {

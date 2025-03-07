@@ -15,7 +15,7 @@ local main_ip = get_first_ip(net_interface)
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown" },
+    ft = { "markdown", "codecompanion" },
   },
   {
     "iamcco/markdown-preview.nvim",
