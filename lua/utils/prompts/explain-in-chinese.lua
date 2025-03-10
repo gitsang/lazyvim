@@ -28,7 +28,11 @@ return {
 4. 强调使用的任何特定函数或方法及其作用。
 5. 如果适用，提供有关代码如何融入更大应用程序的背景。
 
-**注意：请使用中文回复。**]],
+另外你必须：
+
+- 使用Markdown格式，并在代码块开头注明编程语言名称。
+- 所有非编码响应都必须以中文形式呈现
+]],
       opts = {
         visible = false,
       },
@@ -39,7 +43,9 @@ return {
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[请用中文解释 buffer %d 中的这段代码:
+          [[#buffer
+
+请解释 buffer %d 中的这段代码:
 
 ```%s
 %s
