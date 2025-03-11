@@ -1,6 +1,23 @@
+---@class CodecompanionConfigs
+---@field enable? boolean
+---@field keys? {
+---  toggle_chat: string,
+---  quick_chat: string,
+---  prompt_actions: string,
+---  help_actions: string,
+---}
+configs = {
+  enable = true,
+  keys = {
+    toggle_chat = "<leader>cc",
+    prompt_actions = "<leader>A",
+  },
+}
+
 return {
   {
     "olimorris/codecompanion.nvim",
+
     config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -13,6 +30,10 @@ return {
         opts = {},
       },
     },
+
+    keymap({ "n", "v", "x" }, configs.keys.toggle_chat, function() end),
+    keymap({ "n", "v", "x" }, configs.keys.prompt_actions, "<Cmd>CodeCompanionAction<CR>"),
+
     opts = {
       opts = {
         -- ~/.local/state/nvim/codecompanion.log
