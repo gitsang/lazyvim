@@ -4,14 +4,11 @@ return {
     config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
       "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
       "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
       "MeanderingProgrammer/render-markdown.nvim",
-      { -- Optional: Improves `vim.ui.select`
-        "stevearc/dressing.nvim",
-        opts = {},
-      },
+      "stevearc/dressing.nvim",
     },
     opts = {
       opts = {
