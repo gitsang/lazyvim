@@ -1,23 +1,6 @@
----@class CodecompanionConfigs
----@field enable? boolean
----@field keys? {
----  toggle_chat: string,
----  quick_chat: string,
----  prompt_actions: string,
----  help_actions: string,
----}
-configs = {
-  enable = true,
-  keys = {
-    toggle_chat = "<leader>cc",
-    prompt_actions = "<leader>A",
-  },
-}
-
 return {
   {
     "olimorris/codecompanion.nvim",
-
     config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -30,14 +13,6 @@ return {
         opts = {},
       },
     },
-
-    -- local map = LazyVim.safe_keymap_set
-    -- map("n", ";", "$", { desc = "Go to End of Line", remap = true })
-    -- map("x", ";", "$", { desc = "Go to End of Line", remap = true })
-    -- map("o", ";", "$", { desc = "Go to End of Line", remap = true })
-    -- keymap({ "n", "v", "x" }, configs.keys.toggle_chat, function() end),
-    -- keymap({ "n", "v", "x" }, configs.keys.prompt_actions, "<Cmd>CodeCompanionAction<CR>"),
-
     opts = {
       opts = {
         -- ~/.local/state/nvim/codecompanion.log
@@ -67,6 +42,8 @@ return {
             },
             ["git_files"] = {
               description = "List git files",
+              ---@class CodeCompanion.Chat
+              ---@field add_reference fun(self: CodeCompanion.Chat, opts: table, type: string, tag: string): nil
               ---@param chat CodeCompanion.Chat
               callback = function(chat)
                 local handle = io.popen("git ls-files")
