@@ -1,30 +1,43 @@
 return {
-  "hrsh7th/nvim-cmp",
-  dependencies = {
-    "hrsh7th/cmp-emoji",
-  },
-  ---@param opts cmp.ConfigSchema
-  opts = function(_, opts)
-    local cmp = require("cmp")
+  "saghen/blink.cmp",
+  -- optional: provides snippets for the snippet source
+  dependencies = "rafamadriz/friendly-snippets",
 
-    opts.mapping = vim.tbl_extend("force", opts.mapping, {
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-        if cmp.visible() then
-          local entry = cmp.get_selected_entry()
-          if not entry then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            cmp.confirm()
-          end
-        else
-          fallback()
-        end
-      end, { "i", "s", "c" }),
-      ["<CR>"] = cmp.mapping(function(fallback)
-        cmp.abort()
-        fallback()
-      end, { "i", "s", "c" }),
-    })
-  end,
+  -- use a release tag to download pre-built binaries
+  version = "*",
+  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+  -- build = 'cargo build --release',
+  -- If you use nix, you can build from source using latest nightly rust with:
+  -- build = 'nix run .#build-plugin',
+
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    -- 'default' for mappings similar to built-in completion
+    -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+    -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+    -- See the full "keymap" documentation for information on defining your own keymap.
+    keymap = {
+      preset = "default",
+      ["<Tab>"] = { "select_next", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "fallback" },
+    },
+
+    appearance = {
+      -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+      -- Useful for when your theme doesn't support blink.cmp
+      -- Will be removed in a future release
+      use_nvim_cmp_as_default = true,
+      -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- Adjusts spacing to ensure icons are aligned
+      nerd_font_variant = "mono",
+    },
+
+    -- Default list of enabled providers defined so that you can extend it
+    -- elsewhere in your config, without redefining it, due to `opts_extend`
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
+  },
+  opts_extend = { "sources.default" },
 }
