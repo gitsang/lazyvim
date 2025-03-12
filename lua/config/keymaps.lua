@@ -28,3 +28,7 @@ keymap({ "n", "x", "o" }, "<leader>ac", "<Cmd>CodeCompanionChat<CR>", { desc = "
 
 -- Diagnostics
 keymap({ "n" }, "<leader>ad", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
+
+-- Disabled
+keymap({ "n", "x", "o", "c" }, "<A-j>", "", { remap = true })
+keymap({ "n", "x", "o", "c" }, "<A-k>", "", { remap = true })
