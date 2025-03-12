@@ -8,10 +8,10 @@ end
 
 return {
   "hrsh7th/nvim-cmp",
-  opts = {
-    preselect = cmp.PreselectMode.None,
-    completion = { completeopt = "menu,menuone,noselect" },
-    mapping = {
+  opts = function(_, opts)
+    opts.preselect = cmp.PreselectMode.None
+    opts.completion = { completeopt = "menu,menuone,noselect" }
+    opts.mapping = vim.tbl_extend("force", opts.mapping, {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -47,6 +47,6 @@ return {
           fallback()
         end
       end, { "i", "s" }),
-    },
-  },
+    })
+  end,
 }
