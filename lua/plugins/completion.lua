@@ -18,9 +18,6 @@ return {
     opts = function(_, opts)
       opts.preselect = cmp.PreselectMode.None
       opts.completion = { completeopt = "menu,menuone,noselect" }
-      opts.performance = {
-        fetching_timeout = 2000,
-      }
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then

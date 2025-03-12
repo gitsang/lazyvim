@@ -7,13 +7,13 @@ return {
     config = function()
       require("minuet").setup({
         provider = "openai_compatible",
-        request_timeout = 10,
-        throttle = 15000, -- Increase to reduce costs and avoid rate limits
-        debounce = 6000, -- Increase to reduce costs and avoid rate limits
+        request_timeout = 2,
+        throttle = 1500, -- Increase to reduce costs and avoid rate limits
+        debounce = 600, -- Increase to reduce costs and avoid rate limits
         notify = "debug",
         provider_options = {
           openai_compatible = {
-            name = "Worklink",
+            name = "minuet",
             end_point = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
             api_key = function()
               return secret.worklink_llm
@@ -25,7 +25,6 @@ return {
               temperature = 0.01,
               top_p = 0.2,
               provider = {
-                -- Prioritize throughput for faster completion
                 sort = "throughput",
               },
               stop = { "\n\n" },
