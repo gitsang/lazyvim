@@ -18,11 +18,6 @@ return {
     opts = function(_, opts)
       opts.preselect = cmp.PreselectMode.None
       opts.completion = { completeopt = "menu,menuone,noselect" }
-      -- table.insert(opts.sources, 1, {
-      --   name = "minuet",
-      --   group_index = 1,
-      --   priority = 100,
-      -- })
       opts.performance = {
         fetching_timeout = 2000,
       }
@@ -62,7 +57,6 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<A-y>"] = require("minuet").make_cmp_map(),
       })
     end,
   },
