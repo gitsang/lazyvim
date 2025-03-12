@@ -21,7 +21,7 @@ return {
   worklink_openai = function()
     return require("codecompanion.adapters").extend("openai_compatible", {
       env = {
-        url = "https://worklink.yealink.com/llmproxy/",
+        url = "https://worklink.yealink.com/llmproxy",
         api_key = secret.worklink_llm,
       },
       schema = {
