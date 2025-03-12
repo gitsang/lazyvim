@@ -10,15 +10,21 @@ local function keymap(modes, key, command, opts)
   end
 end
 
+-- Movement
 keymap({ "n", "x", "o" }, ";", "$", { desc = "Go to End of Line", remap = true })
 
+-- Pum
 if vim.o.wildoptions:match("pum") then
   vim.api.nvim_set_keymap("c", "<Up>", [[pumvisible() ? '<Left>' : '<Up>']], { expr = true })
   vim.api.nvim_set_keymap("c", "<Down>", [[pumvisible() ? '<Right>' : '<Down>']], { expr = true })
   vim.api.nvim_set_keymap("c", "<Right>", [[pumvisible() ? '<C-y>' : '<Right>']], { expr = true })
 end
 
+-- CodeCompanion
 keymap({ "n", "x", "o" }, "<leader>A", "<Cmd>CodeCompanionAction<CR>", { desc = "Prompt Actions", remap = true })
 keymap({ "n", "x", "o" }, "<leader>aa", "<Cmd>CodeCompanionAction<CR>", { desc = "Prompt Actions", remap = true })
 keymap({ "n", "x", "o" }, "<leader>C", "<Cmd>CodeCompanionChat<CR>", { desc = "Toggle Chat", remap = true })
 keymap({ "n", "x", "o" }, "<leader>ac", "<Cmd>CodeCompanionChat<CR>", { desc = "Toggle Chat", remap = true })
+
+-- Diagnostics
+keymap({ "n" }, "<leader>ad", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
