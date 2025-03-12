@@ -15,7 +15,7 @@ return {
         -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
         language = "中文",
-        system_prompt = require("utils.prompts.system-prompt"),
+        system_prompt = require("vars.codecompanion.system_prompt"),
       },
       strategies = {
         chat = {
