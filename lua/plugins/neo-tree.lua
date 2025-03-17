@@ -88,6 +88,10 @@ return {
           desc = "Open with System Application",
         },
         ["P"] = { "toggle_preview", config = { use_float = false } },
+        ["Z"] = "close_all_nodes",
+        ["z"] = "none",
+        ["<C-F>"] = "fuzzy_finder",
+        ["/"] = "none",
       },
     },
     default_component_configs = {
