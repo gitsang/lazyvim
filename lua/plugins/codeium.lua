@@ -1,6 +1,7 @@
 return {
   {
     "Exafunction/codeium.vim",
+    disabled = true,
     branch = "main",
     config = function()
       vim.g.codeium_no_map_tab = 1
