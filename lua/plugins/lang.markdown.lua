@@ -11,6 +11,7 @@ end
 local default_browser = require("vars.environment").default_browser
 local net_interface = require("vars.environment").net_interface
 local main_ip = get_first_ip(net_interface)
+local HOME = os.getenv("HOME")
 
 return {
   {
@@ -79,5 +80,16 @@ return {
       vim.g.vmt_min_level = 1
       vim.g.vmt_max_level = 6
     end,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters = {
+        ["markdownlint-cli2"] = {
+          args = { "--config", HOME .. "/.markdownlint-cli2.yaml", "--" },
+        },
+      },
+    },
   },
 }
