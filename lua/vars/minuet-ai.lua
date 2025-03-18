@@ -53,11 +53,17 @@ local function aihubmix_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, aihubmix_endpoint, aihubmix_api_key, model, true, default_optional)
 end
 
+local ollama_endpoint = "http://10.5.204.206:11434"
+local function ollama_openai_fim_compatible(name, model)
+  return openai_fim_compatible(name, ollama_endpoint, "", model, false, default_optional)
+end
+
 local openai_fim_compatible_map = {
   worklink_qwen = worklink_openai_fim_compatible("qwen2.5-coder:32b", "qwen2.5-coder-32b-instruct"),
   aihubmix_claude = aihubmix_openai_fim_compatible("claude3.5-haiku", "claude-3-5-haiku-20241022"),
+  ollama_qwen = ollama_openai_fim_compatible("qwen2.5-coder:7b", "qwen2.5-coder:7b"),
 }
 
 return {
-  openai_fim_compatible = openai_fim_compatible_map["worklink_qwen"],
+  openai_fim_compatible = openai_fim_compatible_map[require("vars.environment").minuet.adapter],
 }
