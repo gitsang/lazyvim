@@ -99,12 +99,12 @@ return {
         table.insert(opts.linters_by_ft[ft], "sqlfluff")
       end
       opts.linters = {
-        sqlfluff = {
-          args = {
-            "lint",
-            "--format=json",
-          },
-        },
+        -- sqlfluff = {
+        -- args = {
+        --   "lint",
+        --   "--format=json",
+        -- },
+        -- },
       }
     end,
   },
