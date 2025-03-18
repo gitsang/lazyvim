@@ -69,7 +69,7 @@ local openai_fim_compatible_map = {
   worklink_qwen_14b = worklink_openai_fim_compatible("qwen2.5-coder:14b", "qwen2.5-coder-14b-instruct"),
   aihubmix_claude = aihubmix_openai_fim_compatible("claude3.5-haiku", "claude-3-5-haiku-20241022"),
   aihubmix_qwen = aihubmix_openai_fim_compatible("qwen2.5-coder:32b-instruct", "Qwen/Qwen2.5-Coder-32B-Instruct"),
-  sliconflow_qwen = siliconflow_openai_fim_compatible("qwen2.5-coder:32b-instruct", "Qwen/Qwen2.5-Coder-32B-Instruct"),
+  sliconflow_qwen = siliconflow_openai_fim_compatible("qwen2.5-coder:7b-instruct", "Qwen/Qwen2.5-Coder-7B-Instruct"),
   ollama_qwen = ollama_openai_fim_compatible("qwen2.5-coder:7b", "qwen2.5-coder:7b"),
 }
 
