@@ -10,7 +10,14 @@ return {
         request_timeout = 2,
         throttle = 1500, -- Increase to reduce costs and avoid rate limits
         debounce = 600, -- Increase to reduce costs and avoid rate limits
-        notify = "verbose",
+        -- Control notification display for request status
+        -- Notification options:
+        -- false: Disable all notifications (use boolean false, not string "false")
+        -- "debug": Display all notifications (comprehensive debugging)
+        -- "verbose": Display most notifications
+        -- "warn": Display warnings and errors only
+        -- "error": Display errors only
+        notify = "debug",
         provider_options = {
           openai_fim_compatible = minuet.openai_fim_compatible,
         },

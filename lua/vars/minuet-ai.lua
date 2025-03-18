@@ -53,9 +53,9 @@ local function aihubmix_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, aihubmix_endpoint, aihubmix_api_key, model, true, default_optional)
 end
 
-local ollama_endpoint = "http://10.5.204.206:11434"
+local ollama_endpoint = "http://10.5.204.206:11434/v1/completions"
 local function ollama_openai_fim_compatible(name, model)
-  return openai_fim_compatible(name, ollama_endpoint, "", model, false, default_optional)
+  return openai_fim_compatible(name, ollama_endpoint, "TERM", model, false, default_optional)
 end
 
 local openai_fim_compatible_map = {
