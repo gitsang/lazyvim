@@ -27,7 +27,7 @@ keymap({ "n", "x", "o" }, "<leader>C", "<Cmd>CodeCompanionChat<CR>", { desc = "T
 keymap({ "n", "x", "o" }, "<leader>ac", "<Cmd>CodeCompanionChat<CR>", { desc = "Toggle Chat", remap = true })
 
 -- Diagnostics
-keymap({ "n" }, "<leader>ad", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
+keymap({ "n" }, "K", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
 
 -- Disabled
 keymap({ "n", "i", "x", "s", "o", "c" }, "<A-j>", "", { remap = true })
