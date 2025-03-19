@@ -23,6 +23,7 @@ return {
     ft = { "markdown", "codecompanion" },
     opts = {
       enabled = true,
+      render_modes = { "n", "i", "c", "t" },
       completions = {
         lsp = {
           enabled = true,
@@ -72,6 +73,16 @@ return {
         highlight_language = nil,
         inline_pad = 0,
         highlight_inline = "RenderMarkdownCodeInline",
+      },
+      win_options = {
+        conceallevel = {
+          default = vim.api.nvim_get_option_value("conceallevel", {}),
+          rendered = 0,
+        },
+        concealcursor = {
+          default = vim.api.nvim_get_option_value("concealcursor", {}),
+          rendered = "",
+        },
       },
     },
   },
