@@ -17,7 +17,7 @@ return {
         -- "verbose": Display most notifications
         -- "warn": Display warnings and errors only
         -- "error": Display errors only
-        notify = "debug",
+        notify = "warn",
         provider_options = {
           openai_fim_compatible = minuet.openai_fim_compatible,
         },
