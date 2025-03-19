@@ -16,29 +16,27 @@ local HOME = os.getenv("HOME")
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons",
+    },
     ft = { "markdown", "codecompanion" },
     opts = {
-      anti_conceal = {
-        enabled = true,
-        -- Which elements to always show, ignoring anti conceal behavior. Values can either be
-        -- booleans to fix the behavior or string lists representing modes where anti conceal
-        -- behavior will be ignored. Valid values are:
-        --   head_icon, head_background, head_border, code_language, code_background, code_border
-        --   dash, bullet, check_icon, check_scope, quote, table_border, callout, link, sign
-        ignore = {
-          dash = true,
-          bullet = true,
-          check_icon = true,
-          head_icon = true,
-          head_border = true,
-          code_background = true,
-          code_border = true,
-          sign = true,
+      enabled = true,
+      completions = {
+        lsp = {
+          enabled = true,
         },
-        above = 0,
-        below = 0,
       },
-      heading = { border = true },
+      heading = {
+        enabled = true,
+        render_modes = false,
+        sign = true,
+        icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+        position = "overlay",
+        signs = { "󰫎 " },
+        border = true,
+      },
       bullet = {
         enabled = true,
         render_modes = false,
