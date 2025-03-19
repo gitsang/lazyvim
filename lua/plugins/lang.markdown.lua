@@ -17,6 +17,75 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion" },
+    opts = {
+      anti_conceal = {
+        enabled = true,
+        -- Which elements to always show, ignoring anti conceal behavior. Values can either be
+        -- booleans to fix the behavior or string lists representing modes where anti conceal
+        -- behavior will be ignored. Valid values are:
+        --   head_icon, head_background, head_border, code_language, code_background, code_border
+        --   dash, bullet, check_icon, check_scope, quote, table_border, callout, link, sign
+        ignore = {
+          dash = true,
+          bullet = true,
+          check_icon = true,
+          head_icon = true,
+          head_border = true,
+          code_background = true,
+          code_border = true,
+          sign = true,
+        },
+        above = 0,
+        below = 0,
+      },
+      heading = { border = true },
+      bullet = {
+        enabled = true,
+        render_modes = false,
+        icons = { "", "" },
+        ordered_icons = function(ctx)
+          local value = vim.trim(ctx.value)
+          local index = tonumber(value:sub(1, #value - 1))
+          return string.format("%d.", index > 1 and index or ctx.index)
+        end,
+        left_pad = 0,
+        right_pad = 0,
+        highlight = "RenderMarkdownBullet",
+        scope_highlight = {},
+      },
+      code = {
+        enabled = true,
+        render_modes = false,
+        sign = true,
+        style = "full",
+        position = "left",
+        language_pad = 0,
+        language_name = true,
+        disable_background = { "diff" },
+        width = "block",
+        left_margin = 0,
+        left_pad = 0,
+        right_pad = 0,
+        min_width = 0,
+        border = "thin",
+        above = "▄",
+        below = "▀",
+        highlight = "RenderMarkdownCode",
+        highlight_language = nil,
+        inline_pad = 0,
+        highlight_inline = "RenderMarkdownCodeInline",
+      },
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, 1, {
+        name = "render-markdown",
+        group_index = 1,
+        priority = 100,
+      })
+    end,
   },
   {
     "iamcco/markdown-preview.nvim",
