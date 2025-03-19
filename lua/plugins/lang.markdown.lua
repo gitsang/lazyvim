@@ -29,6 +29,22 @@ return {
           enabled = true,
         },
       },
+      anti_conceal = {
+        -- This enables hiding any added text on the line the cursor is on.
+        enabled = true,
+        -- Which elements to always show, ignoring anti conceal behavior. Values can either be
+        -- booleans to fix the behavior or string lists representing modes where anti conceal
+        -- behavior will be ignored. Valid values are:
+        --   head_icon, head_background, head_border, code_language, code_background, code_border
+        --   dash, bullet, check_icon, check_scope, quote, table_border, callout, link, sign
+        ignore = {
+          code_language = true,
+          code_background = true,
+          sign = true,
+        },
+        above = 0,
+        below = 0,
+      },
       heading = {
         enabled = true,
         render_modes = false,
@@ -57,7 +73,7 @@ return {
         render_modes = false,
         sign = true,
         style = "full",
-        position = "left",
+        position = "right",
         language_pad = 0,
         language_name = true,
         disable_background = { "diff" },
