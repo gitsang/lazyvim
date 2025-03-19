@@ -38,6 +38,24 @@ return {
       },
     })
   end,
+  worklink_claude = function()
+    return require("codecompanion.adapters").extend("openai_compatible", {
+      env = {
+        url = "https://worklink.yealink.com/llmproxy",
+        api_key = secret.worklink_llm,
+      },
+      schema = {
+        model = {
+          default = "claude-3.7-sonnet",
+          choices = {
+            "claude-3.5-haiku",
+            "claude-3.5-sonnet",
+            "claude-3.7-sonnet",
+          },
+        },
+      },
+    })
+  end,
   worklink_ollama = function()
     return require("codecompanion.adapters").extend("ollama", {
       env = {
