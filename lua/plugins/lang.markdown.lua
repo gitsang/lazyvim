@@ -23,7 +23,7 @@ return {
     ft = { "markdown", "codecompanion" },
     opts = {
       enabled = true,
-      render_modes = { "n", "i", "c", "t" },
+      render_modes = { "n", "v", "V", "CTRL-V", "i", "c", "t" },
       completions = {
         lsp = {
           enabled = true,
