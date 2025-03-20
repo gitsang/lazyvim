@@ -42,7 +42,7 @@ return {
         keep_alive = 1800,
       },
       debounce_ms = 150,
-      accept_keymap = "<Tab>",
+      accept_keymap = "<C-g>",
       dismiss_keymap = "<S-Tab>",
       tls_skip_verify_insecure = false,
       lsp = {

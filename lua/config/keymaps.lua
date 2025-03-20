@@ -15,8 +15,8 @@ keymap({ "n", "x", "o" }, ";", "$", { desc = "Go to End of Line", remap = true }
 
 -- Pum
 if vim.o.wildoptions:match("pum") then
-  vim.api.nvim_set_keymap("c", "<Up>", [[pumvisible() ? '<Left>' : '<Up>']], { expr = true })
-  vim.api.nvim_set_keymap("c", "<Down>", [[pumvisible() ? '<Right>' : '<Down>']], { expr = true })
+  vim.api.nvim_set_keymap("c", "<Up>", [[pumvisible() ? '<S-Tab>' : '<Up>']], { expr = true })
+  vim.api.nvim_set_keymap("c", "<Down>", [[pumvisible() ? '<Tab>' : '<Down>']], { expr = true })
   vim.api.nvim_set_keymap("c", "<Right>", [[pumvisible() ? '<C-y>' : '<Right>']], { expr = true })
 end
 
