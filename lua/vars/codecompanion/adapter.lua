@@ -1,45 +1,9 @@
 local secret = require("vars.secret")
 
 return {
-  worklink_deepseek = function()
-    return require("codecompanion.adapters").extend("deepseek", {
-      url = "https://worklink.yealink.com/llmproxy/v1/chat/completions",
-      env = {
-        api_key = secret.worklink_llm,
-      },
-      schema = {
-        model = {
-          default = "deepseek-v3",
-          choices = {
-            ["deepseek-r1"] = { opts = { can_reason = true } },
-            "deepseek-v3",
-          },
-        },
-      },
-    })
-  end,
-  worklink_openai = function()
+  worklink = function()
     return require("codecompanion.adapters").extend("openai_compatible", {
-      env = {
-        url = "https://worklink.yealink.com/llmproxy",
-        api_key = secret.worklink_llm,
-      },
-      schema = {
-        model = {
-          default = "gpt-4o",
-          choices = {
-            "gpt-4o",
-            "gpt-4o-mini",
-            "gpt-3.5-turbo",
-            "gpt-3.5-turbo-16k",
-            "qwen-turbo-0624",
-          },
-        },
-      },
-    })
-  end,
-  worklink_claude = function()
-    return require("codecompanion.adapters").extend("openai_compatible", {
+      name = "worklink",
       env = {
         url = "https://worklink.yealink.com/llmproxy",
         api_key = secret.worklink_llm,
@@ -48,6 +12,13 @@ return {
         model = {
           default = "claude-3.7-sonnet",
           choices = {
+            "gpt-4o",
+            "gpt-4o-mini",
+            "gpt-3.5-turbo",
+            "gpt-3.5-turbo-16k",
+            "qwen-turbo-0624",
+            ["deepseek-r1"] = { opts = { can_reason = true } },
+            "deepseek-v3",
             "claude-3.5-haiku",
             "claude-3.5-sonnet",
             "claude-3.7-sonnet",
@@ -56,24 +27,9 @@ return {
       },
     })
   end,
-  worklink_ollama = function()
-    return require("codecompanion.adapters").extend("ollama", {
-      env = {
-        url = "http://10.5.204.206:11434",
-      },
-      schema = {
-        model = {
-          default = "qwq:latest",
-          choices = {
-            "qwq:latest",
-            "deepseek-r1:32b",
-          },
-        },
-      },
-    })
-  end,
   siliconflow = function()
     return require("codecompanion.adapters").extend("openai_compatible", {
+      name = "siliconflow",
       env = {
         url = "https://api.siliconflow.cn/v1",
         api_key = secret.siliconflow,
@@ -94,6 +50,7 @@ return {
   end,
   aihubmix = function()
     return require("codecompanion.adapters").extend("openai_compatible", {
+      name = "aihubmix",
       env = {
         url = "https://aihubmix.com",
         api_key = secret.aihubmix,
@@ -112,8 +69,9 @@ return {
       },
     })
   end,
-  sang_ollama = function()
+  sang = function()
     return require("codecompanion.adapters").extend("ollama", {
+      name = "sang",
       env = {
         url = "http://dev.xm1.c8g.top:11434",
       },
