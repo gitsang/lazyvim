@@ -20,6 +20,7 @@ return {
         notify = "verbose",
         provider_options = {
           openai_fim_compatible = minuet.openai_fim_compatible,
+          openai_compatible = minuet.openai_compatible,
         },
       })
     end,

@@ -1,5 +1,13 @@
 local secret = require("vars.secret")
 
+local worklink_endpoint = "http://openai-proxy.ops.yl.c8g.top:8888/llmproxy/v1/completions"
+local worklink_api_key = secret.worklink_llm
+local aihubmix_endpoint = "https://aihubmix.com"
+local aihubmix_api_key = secret.aihubmix
+local siliconflow_endpoint = "https://api.siliconflow.cn/v1/completions"
+local siliconflow_api_key = secret.siliconflow
+local ollama_endpoint = "http://10.5.204.206:11434/v1/completions"
+
 local default_stop = {
   "<|endoftext|>",
   "<|fim_prefix|>",
@@ -42,25 +50,35 @@ local function openai_fim_compatible(name, end_point, api_key, model, stream, op
   }
 end
 
-local worklink_endpoint = "http://openai-proxy.ops.yl.c8g.top:8888/llmproxy/v1/completions"
-local worklink_api_key = secret.worklink_llm
+local function openai_compatible(name, end_point, api_key, model, stream, optional)
+  return {
+    name = name,
+    end_point = end_point,
+    api_key = function()
+      return api_key
+    end,
+    model = model,
+    stream = stream,
+    optional = optional,
+  }
+end
+
 local function worklink_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, worklink_endpoint, worklink_api_key, model, true, default_optional)
 end
 
-local aihubmix_endpoint = "https://aihubmix.com"
-local aihubmix_api_key = secret.aihubmix
+local function worklink_openai_compatible(name, model)
+  return openai_compatible(name, worklink_endpoint, worklink_api_key, model, true, {})
+end
+
 local function aihubmix_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, aihubmix_endpoint, aihubmix_api_key, model, true, default_optional)
 end
 
-local siliconflow_endpoint = "https://api.siliconflow.cn/v1/completions"
-local siliconflow_api_key = secret.siliconflow
 local function siliconflow_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, siliconflow_endpoint, siliconflow_api_key, model, true, default_optional)
 end
 
-local ollama_endpoint = "http://10.5.204.206:11434/v1/completions"
 local function ollama_openai_fim_compatible(name, model)
   return openai_fim_compatible(name, ollama_endpoint, "TERM", model, false, default_optional)
 end
@@ -76,6 +94,12 @@ local openai_fim_compatible_map = {
   ollama_qwen = ollama_openai_fim_compatible("qwen2.5-coder:7b", "qwen2.5-coder:7b"),
 }
 
+local openai_compatible_map = {
+  worklink_qwen_32b = worklink_openai_compatible("qwen2.5-coder:32b", "qwen2.5-coder-32b-instruct"),
+  worklink_claude_haiku = worklink_openai_compatible("claude-3.5-haiku", "claude-3.5-haiku"),
+}
+
 return {
   openai_fim_compatible = openai_fim_compatible_map[require("vars.environment").minuet.adapter],
+  openai_compatible = openai_compatible_map[require("vars.environment").minuet.adapter],
 }
