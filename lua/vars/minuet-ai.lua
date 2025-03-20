@@ -17,14 +17,15 @@ local default_stop = {
 }
 
 local default_optional = {
-  max_tokens = 4096,
   temperature = 0.01,
   top_p = 0.2,
+  suffix = "\n",
+  max_tokens = 512,
+  num_predict = 128,
+  num_ctx = 128,
   provider = {
     sort = "throughput",
   },
-  num_predict = 4096,
-  num_ctx = 8192,
   stop = default_stop,
 }
 
