@@ -84,6 +84,7 @@ local function ollama_openai_fim_compatible(name, model)
 end
 
 local openai_fim_compatible_map = {
+  worklink_gpt_4o = worklink_openai_fim_compatible("gpt-4o", "gpt-4o"),
   worklink_qwen_32b = worklink_openai_fim_compatible("qwen2.5-coder:32b", "qwen2.5-coder-32b-instruct"),
   worklink_qwen_14b = worklink_openai_fim_compatible("qwen2.5-coder:14b", "qwen2.5-coder-14b-instruct"),
   worklink_claude_haiku = worklink_openai_fim_compatible("claude-3.5-haiku", "claude-3.5-haiku"),
