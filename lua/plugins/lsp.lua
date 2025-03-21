@@ -1,6 +1,9 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
+    inlay_hints = {
+      enabled = false,
+    },
     diagnostics = {
       -- for virtual text at end of line
       virtual_text = {
