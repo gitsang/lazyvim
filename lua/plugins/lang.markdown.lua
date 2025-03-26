@@ -107,7 +107,7 @@ return {
     end,
   },
   {
-    "iamcco/markdown-preview.nvim",
+    "gitsang/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = function()
       require("lazy").load({ plugins = { "markdown-preview.nvim" } })
