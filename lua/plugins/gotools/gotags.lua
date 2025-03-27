@@ -1,10 +1,6 @@
 -- gotags.lua
 local M = {}
 
-local function log_error(message)
-  print("[GoTags Debug] " .. message)
-end
-
 -- 添加tags的函数
 function M.add_tags(start_line, end_line, ...)
   -- 保存文件
@@ -24,7 +20,7 @@ function M.add_tags(start_line, end_line, ...)
 
   local args = { ... }
 
-  -- 处理tags参数
+  -- 处理 tags 参数
   if args[1] and args[1] ~= "--" then
     table.insert(cmds, "-add-tags")
     table.insert(cmds, args[1])
@@ -53,13 +49,14 @@ function M.add_tags(start_line, end_line, ...)
 
   -- 执行命令
   local cmd = table.concat(cmds, " ")
+  print("[GoTags CMD] " .. cmd)
+
   local result = vim.fn.system(cmd)
   local exit_code = vim.v.shell_error
 
   -- 检查命令执行是否成功
   if exit_code ~= 0 then
-    log_error("Command failed: " .. cmd)
-    log_error("Error: " .. result)
+    print("[GoTags Error] " .. result)
     return
   end
 
@@ -108,13 +105,14 @@ function M.remove_tags(start_line, end_line, ...)
 
   -- 执行命令
   local cmd = table.concat(cmds, " ")
+  print("[GoTags CMD] " .. cmd)
+
   local result = vim.fn.system(cmd)
   local exit_code = vim.v.shell_error
 
   -- 检查命令执行是否成功
   if exit_code ~= 0 then
-    log_error("Command failed: " .. cmd)
-    log_error("Error: " .. result)
+    print("[GoTags Error] " .. result)
     return
   end
 
