@@ -14,9 +14,9 @@ return {
           __inherited_from = "openai",
           endpoint = "https://worklink.yealink.com/llmproxy", -- The full endpoint of the provider
           model = "claude-3.7-sonnet", -- The model name to use with this provider
-          api_key_name = "cmd:echo 7f2ebf93-f5bf-45b0-8875-d1b9d5d299a3", -- Use cmd to set API key directly
+          -- api_key_name = "cmd:bw get item llmproxy@yauth | jq -r .login.password", -- Use cmd to set API key directly
           -- api_key_name = "cmd:bw get notes worklink-api-key",
-          -- api_key_name = "WORKLINK_API_KEY", -- The name of the environment variable that contains the API key
+          api_key_name = "WORKLINK_API_KEY", -- The name of the environment variable that contains the API key
         },
       },
       openai = {
