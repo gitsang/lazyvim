@@ -20,8 +20,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
     },
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "codecompanion", "Avante" },
     opts = {
+      file_types = { "markdown", "codecompanion", "Avante" },
       enabled = true,
       render_modes = { "n", "v", "V", "\22", "i", "c", "t" },
       completions = {
@@ -46,7 +47,7 @@ return {
         icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
         position = "overlay",
         signs = { "󰫎 " },
-        border = true,
+        border = false,
       },
       bullet = {
         enabled = true,
