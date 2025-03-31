@@ -2,7 +2,7 @@ local secret = require("vars.secret")
 
 return {
   {
-    "yetone/avante.nvim",
+    "gitsang/avante.nvim",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
@@ -14,18 +14,10 @@ return {
           __inherited_from = "openai",
           endpoint = "https://worklink.yealink.com/llmproxy", -- The full endpoint of the provider
           model = "claude-3.7-sonnet", -- The model name to use with this provider
-          -- api_key_name = "cmd:bw get item llmproxy@yauth | jq -r .login.password", -- Use cmd to set API key directly
-          -- api_key_name = "cmd:bw get notes worklink-api-key",
-          api_key_name = "WORKLINK_API_KEY", -- The name of the environment variable that contains the API key
+          parse_api_key = function()
+            return secret.worklink_llm
+          end,
         },
-      },
-      openai = {
-        endpoint = "https://worklink.yealink.com/llmproxy",
-        model = "claude-3.7-sonnet", -- your desired model (or use gpt-4o, etc.)
-        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-        temperature = 0,
-        max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-        --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
