@@ -9,6 +9,7 @@ return {
       -- add any opts here
       -- for example
       provider = "worklink",
+      auto_suggestions_provider = "worklink",
       vendors = {
         ["worklink"] = {
           __inherited_from = "openai",
