@@ -80,10 +80,10 @@ return {
       mappings = {
         --- @class AvanteConflictMappings
         diff = {
-          ours = "co",
-          theirs = "ct",
-          all_theirs = "ca",
-          both = "cb",
+          ours = "gr",
+          theirs = "ga",
+          all_theirs = "gA",
+          both = "gb",
           cursor = "cc",
           next = "]x",
           prev = "[x",
