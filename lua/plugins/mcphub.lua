@@ -13,10 +13,10 @@ return {
 
       -- Optional options
       on_ready = function(hub)
-        -- Called when hub is ready
+        print("MCP Hub is ready", hub.get_state(hub))
       end,
       on_error = function(err)
-        -- Called on errors
+        print("MCP Hub error: " .. err)
       end,
       log = {
         level = vim.log.levels.WARN,
