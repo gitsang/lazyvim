@@ -131,8 +131,9 @@ return {
           rounded = true,
         },
         input = {
-          prefix = "> ",
-          height = 8, -- 垂直布局中输入窗口的高度
+          -- prefix = "> ",
+          prefix = "",
+          height = 12, -- 垂直布局中输入窗口的高度
         },
         edit = {
           border = "rounded",
