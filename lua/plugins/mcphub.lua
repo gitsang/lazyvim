@@ -13,7 +13,7 @@ return {
 
       -- Optional options
       on_ready = function(hub)
-        print("MCP Hub is ready", hub.get_state(hub))
+        print("MCP Hub is serving at " .. ":" .. hub.port .. " (" .. hub.client_id .. ")")
       end,
       on_error = function(err)
         print("MCP Hub error: " .. err)
