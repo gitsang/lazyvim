@@ -178,4 +178,8 @@ return {
       },
     },
   },
+  {
+    "gitsang/markdown-title-numbering.nvim",
+    opts = {},
+  },
 }
