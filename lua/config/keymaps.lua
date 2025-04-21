@@ -20,10 +20,12 @@ if vim.o.wildoptions:match("pum") then
 end
 
 -- CodeCompanion
--- keymap({ "n", "x", "o" }, "<leader>A", "<Cmd>CodeCompanionAction<CR>", { desc = "Prompt Actions", remap = true })
--- keymap({ "n", "x", "o" }, "<leader>aa", "<Cmd>CodeCompanionAction<CR>", { desc = "Prompt Actions", remap = true })
--- keymap({ "n", "x", "o" }, "<leader>C", "<Cmd>CodeCompanionChat<CR>", { desc = "Toggle Chat", remap = true })
--- keymap({ "n", "x", "o" }, "<leader>ac", "<Cmd>CodeCompanionChat<CR>", { desc = "Toggle Chat", remap = true })
+keymap(
+  { "n", "i", "x", "s", "o", "c" },
+  "<leader>ac",
+  "<Cmd>CodeCompanionAction<CR>",
+  { desc = "CodeCompanion Actions", remap = true }
+)
 
 -- Diagnostics
 keymap({ "n" }, "K", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
