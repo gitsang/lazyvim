@@ -1,10 +1,12 @@
 return function(opts)
   local language = opts.language or "Chinese - Simplified"
-  opts.languages = opts.languages or {}
+  local env = require("vars.environment")
+  local codecompanion_config = env.codecompanion or {}
+  local user_languages = codecompanion_config.languages or {}
   local languages = {
-    communicate = opts.languages.communicate or language,
-    output = opts.languages.output or language,
-    comment = opts.languages.comment or language,
+    communicate = user_languages.communicate or language,
+    output = user_languages.output or language,
+    comment = user_languages.comment or language,
   }
   return string.format(
     [[
@@ -34,9 +36,9 @@ You must:
 - Only return code relevant to the current task. You may not need to return all code shared by the user
 - Use actual newlines rather than '\n' to start a new line
 - Only use '\n' when you literally want a backslash followed by the character 'n'
-- All non-coding responses must be presented in %s
+- All explanatory text and responses (outside of code blocks) must be presented in %s
 - All code output (print, echo, log statements) should be in %s
-- All code comments should be written in %s
+- All code comments within code blocks should be written in %s
 
 When executing tasks:
 

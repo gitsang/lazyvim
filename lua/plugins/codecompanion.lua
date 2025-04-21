@@ -15,11 +15,6 @@ return {
         -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
         language = "Chinese - Simplified",
-        languages = {
-          communicate = "Chinese - Simplified",
-          output = "English",
-          comment = "English",
-        },
         system_prompt = require("vars.codecompanion.system_prompt"),
       },
       strategies = {
