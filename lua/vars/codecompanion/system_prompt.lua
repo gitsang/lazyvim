@@ -1,5 +1,6 @@
 return function(opts)
   local language = opts.language or "Chinese - Simplified"
+  opts.languages = opts.languages or {}
   local languages = {
     communicate = opts.languages.communicate or language,
     output = opts.languages.output or language,
