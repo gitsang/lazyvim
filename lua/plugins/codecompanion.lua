@@ -9,6 +9,7 @@ return {
       "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
       "MeanderingProgrammer/render-markdown.nvim",
       "stevearc/dressing.nvim",
+      "folke/noice.nvim",
     },
     opts = {
       opts = {
@@ -119,5 +120,8 @@ return {
         },
       },
     },
+    init = function()
+      require("plugins.codecompanion.companion-notification").init()
+    end,
   },
 }
