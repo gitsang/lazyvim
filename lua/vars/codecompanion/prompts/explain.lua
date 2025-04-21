@@ -8,11 +8,11 @@ local constants = {
 
 return {
   strategy = "chat",
-  description = "使用中文解释缓冲区代码",
+  description = "Explain the code in the buffer",
   opts = {
     is_slash_cmd = false,
     modes = { "v" },
-    short_name = "explain-in-chinese",
+    short_name = "explain",
     auto_submit = false,
     user_prompt = false,
     stop_context_insertion = true,
@@ -20,18 +20,18 @@ return {
   prompts = {
     {
       role = constants.SYSTEM_ROLE,
-      content = [[当被要求解释代码时，请遵循以下步骤：
+      content = [[
+When asked to explain code, please follow these steps:
 
-1. 确定编程语言。
-2. 描述代码的目的，并引用编程语言中的核心概念。
-3. 解释每个函数或重要的代码块，包括参数和返回值。
-4. 强调使用的任何特定函数或方法及其作用。
-5. 如果适用，提供有关代码如何融入更大应用程序的背景。
+1. Identify the programming language.
+2. Describe the purpose of the code, referencing core concepts in the programming language.
+3. Explain each function or important code block, including parameters and return values.
+4. Highlight any specific functions or methods used and their purpose.
+5. If applicable, provide context on how the code fits into a larger application.
 
-另外你必须：
+Additionally, you must:
 
-- 使用Markdown格式，并在代码块开头注明编程语言名称。
-- 所有非编码响应都必须以中文形式呈现
+- Use Markdown formatting, and specify the programming language name at the beginning of code blocks.
 ]],
       opts = {
         visible = false,
@@ -43,9 +43,10 @@ return {
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 
         return fmt(
-          [[#buffer
+          [[
+#buffer
 
-请解释 buffer %d 中的这段代码:
+Please explain this code in buffer %d
 
 ```%s
 %s

@@ -1,6 +1,6 @@
 return {
-  ["Explain in Chinese"] = require("vars.codecompanion.prompts.explain-in-chinese"),
-  ["Analyze in Chinese"] = require("vars.codecompanion.prompts.analyze-in-chinese"),
-  ["Fix in Chinese"] = require("vars.codecompanion.prompts.fix-in-chinese"),
+  ["Explain"] = require("vars.codecompanion.prompts.explain"),
+  ["Analyze"] = require("vars.codecompanion.prompts.analyze"),
+  ["Fix"] = require("vars.codecompanion.prompts.fix"),
   ["Translate"] = require("vars.codecompanion.prompts.translate"),
 }

@@ -8,36 +8,36 @@ local constants = {
 
 return {
   strategy = "chat",
-  description = "修复选中代码",
+  description = "Analyze the code and diagnostic information",
   opts = {
     is_slash_cmd = false,
     modes = { "v" },
-    short_name = "fix-in-chinese",
-    auto_submit = false,
+    short_name = "analyze",
+    auto_submit = true,
     user_prompt = false,
     stop_context_insertion = true,
   },
   prompts = {
     {
       role = constants.SYSTEM_ROLE,
-      content = [[当被要求修复代码时，请按照以下步骤操作：
+      content = [[
+When asked to analyze diagnostic information, please follow these steps:
 
-1. **识别问题**：仔细阅读提供的代码，找出任何潜在的问题或改进之处。
-2. **计划修复**：用伪代码描述修复代码的计划，详细说明每一步。
-3. **实施修复**：在一个单独的代码块中编写更正后的代码。
-4. **解释修复**：简要解释所做的更改及其原因。
+1. **Identify the problem**: Carefully read the provided code and identify any potential issues or areas for improvement.
+2. **Plan the fix**: Describe your plan to fix the code using pseudocode, explaining each step in detail.
+3. **Implement the fix**: Write the corrected code in a separate code block.
+4. **Explain the fix**: Briefly explain the changes made and the reasoning behind them.
 
-确保已修复的代码：
+Ensure that the fixed code:
 
-- 包含必要的导入。
- - 能够处理潜在错误0
-- 遵循可读性和可维护性的最佳实践。
-- 格式正确。
+- Includes necessary imports.
+- Can handle potential errors.
+- Follows best practices for readability and maintainability.
+- Is properly formatted.
 
-另外你必须：
+Additionally, you must:
 
-- 使用Markdown格式，并在代码块开头注明编程语言名称。
-- 所有非编码响应都必须以中文形式呈现
+- Use Markdown formatting and specify the programming language name at the beginning of code blocks.
 ]],
       opts = {
         visible = false,
@@ -55,15 +55,16 @@ return {
         end
 
         return fmt(
-          [[@editor #buffer
+          [[
+#buffer
 
-请修复 buffer %d 中的代码，并解释修复方式:
+Please analyze the code and diagnostic information in buffer %d and explain how to fix it:
 
 ```%s
 %s
 ```
 
-诊断信息：
+Diagnostic:
 
 ```
 %s
