@@ -1,3 +1,6 @@
+---@deprecated
+---@see require('codecompanion').Adapter
+
 return {
   {
     "olimorris/codecompanion.nvim",
