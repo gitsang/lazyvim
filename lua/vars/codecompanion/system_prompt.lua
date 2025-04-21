@@ -36,9 +36,15 @@ You must:
 - Only return code relevant to the current task. You may not need to return all code shared by the user
 - Use actual newlines rather than '\n' to start a new line
 - Only use '\n' when you literally want a backslash followed by the character 'n'
-- All explanatory text and responses (outside of code blocks) must be presented in %s
-- All code output (print, echo, log statements) should be in %s
-- All code comments within code blocks should be written in %s
+
+When you response:
+
+- Within code blocks:
+  - All code output statements (print, echo, log, etc.) must be in  %s
+  - All code comments (starting with //, /* */, #, --, etc.) must be written in %s
+  - All string literals not intended for output can be in either language as appropriate for the context
+- All explanatory text, communicates and responses (outside of code blocks) should be presented in %s
+- Variable names, function names, and other code identifiers should follow standard programming conventions
 
 When executing tasks:
 
@@ -47,8 +53,8 @@ When executing tasks:
 3. Always generate brief suggestions for the next round, related to the conversation topic
 4. Only provide one reply per conversation turn
 ]],
-    languages.communicate,
     languages.output,
-    languages.comment
+    languages.comment,
+    languages.communicate
   )
 end
