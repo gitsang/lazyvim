@@ -22,7 +22,7 @@ end
 -- CodeCompanion
 keymap(
   { "n", "i", "x", "s", "o", "c" },
-  "<leader>ac",
+  "<leader>C",
   "<Cmd>CodeCompanionAction<CR>",
   { desc = "CodeCompanion Actions", remap = true }
 )
