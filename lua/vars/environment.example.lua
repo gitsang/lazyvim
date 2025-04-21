@@ -1,12 +1,20 @@
 return {
   codecompanion = {
     chat = {
-      adapter = "worklink_ollama",
+      adapter = "YOUR_ADAPTER_HERE",
     },
     inline = {
-      adapter = "worklink_ollama",
+      adapter = "YOUR_ADAPTER_HERE",
+    },
+    cmd = {
+      adapter = "YOUR_ADAPTER_HERE",
+    },
+    languages = {
+      communicate = "YOUR_COMMUNICATE_HERE",
+      output = "YOUR_OUTPUT_HERE",
+      comment = "YOUR_COMMENT_HERE",
     },
   },
-  net_interface = "enp1s0",
-  default_browser = "none",
+  net_interface = "YOUR_NET_INTERFACE_HERE",
+  default_browser = "YOUR_DEFAULT_BROWSER_HERE",
 }
