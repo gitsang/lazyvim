@@ -1,5 +1,4 @@
----@deprecated
----@see require('codecompanion').Adapter
+---@see require('codecompanion')
 
 return {
   {
