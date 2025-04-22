@@ -19,17 +19,9 @@ if vim.o.wildoptions:match("pum") then
   vim.api.nvim_set_keymap("c", "<Down>", [[pumvisible() ? '<Right>' : '<Down>']], { expr = true })
 end
 
--- CodeCompanion
-keymap(
-  { "n", "i", "x", "s", "o", "c" },
-  "<leader>aa",
-  "<Cmd>CodeCompanionAction<CR>",
-  { desc = "CodeCompanion Actions", remap = true }
-)
-
 -- Diagnostics
 keymap({ "n" }, "K", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
 
 -- Disabled
-keymap({ "n", "i", "x", "s", "o", "c" }, "<A-j>", "", { remap = true })
-keymap({ "n", "i", "x", "s", "o", "c" }, "<A-k>", "", { remap = true })
+vim.keymap.del({ "n", "i", "v" }, "<A-j>")
+vim.keymap.del({ "n", "i", "v" }, "<A-k>")

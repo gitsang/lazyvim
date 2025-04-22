@@ -1,19 +1,29 @@
 return {
-  "neovim/nvim-lspconfig",
-  opts = {
-    inlay_hints = {
-      enabled = false,
-    },
-    diagnostics = {
-      -- for virtual text at end of line
-      virtual_text = {
-        source = true,
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
       },
-      -- for the floating diagnostics window when press `<leader>cd`
-      float = {
-        source = true,
+      diagnostics = {
+        -- for virtual text at end of line
+        virtual_text = {
+          source = true,
+        },
+        -- for the floating diagnostics window when press `<leader>cd`
+        float = {
+          source = true,
+        },
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      -- https://www.lazyvim.org/plugins/lsp
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<leader>cc", false }
+    end,
   },
   {
     "nvim-lua/plenary.nvim", -- 确保依赖已安装

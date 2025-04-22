@@ -66,7 +66,7 @@ return {
       behaviour = {
         auto_suggestions = false, -- 实验阶段
         auto_set_highlight_group = true,
-        auto_set_keymaps = false,
+        auto_set_keymaps = true,
         auto_apply_diff_after_generation = true,
         support_paste_from_clipboard = false,
         minimize_diff = true, -- 是否在应用代码块时删除未更改的行

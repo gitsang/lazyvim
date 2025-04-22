@@ -13,6 +13,13 @@ return {
       "stevearc/dressing.nvim",
       "folke/noice.nvim",
     },
+    keys = {
+      {
+        "<leader>cc",
+        "<Cmd>CodeCompanionAction<CR>",
+        desc = "CodeCompanion Actions",
+      },
+    },
     opts = {
       opts = {
         -- ~/.local/state/nvim/codecompanion.log
