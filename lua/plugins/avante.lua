@@ -50,12 +50,10 @@ return {
           __inherited_from = "openai",
           endpoint = "https://worklink.yealink.com/llmproxy",
           model = "claude-3.7-sonnet",
-          -- model = "gpt-4o",
-          api_key_name = "WORKLINK_API_KEY",
-          -- parse_api_key = function()
-          --   return secret.worklink_llm
-          -- end,
-          -- disable_tools = true,
+          -- api_key_name = "WORKLINK_API_KEY",
+          parse_api_key = function()
+            return require("vars.secret").worklink_llm
+          end,
         },
       },
       dual_boost = {
