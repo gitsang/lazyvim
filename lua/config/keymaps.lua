@@ -23,5 +23,7 @@ end
 keymap({ "n" }, "K", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
 
 -- Disabled
-vim.keymap.del({ "n", "i", "v" }, "<A-j>")
-vim.keymap.del({ "n", "i", "v" }, "<A-k>")
+vim.keymap.del({ "n", "i", "v", "x", "s", "o", "c" }, "<A-j>")
+vim.keymap.del({ "n", "i", "v", "x", "s", "o", "c" }, "<A-k>")
+
+vim.keymap.del({ "n", "i", "v", "x", "s", "o", "c" }, "<leader>cc")
