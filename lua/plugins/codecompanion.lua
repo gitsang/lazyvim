@@ -124,6 +124,7 @@ return {
     },
     init = function()
       require("plugins.codecompanion.companion-notification").init()
+      require("plugins.codecompanion.codecompanion_autosave")
     end,
   },
 }
