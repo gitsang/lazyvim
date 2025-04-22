@@ -17,7 +17,7 @@ return {
       {
         "<leader>cc",
         "<Cmd>CodeCompanionAction<CR>",
-        mode = { "n", "i", "v", "x", "s", "o", "c" },
+        mode = { "n", "v" },
         desc = "CodeCompanion Actions",
       },
     },
