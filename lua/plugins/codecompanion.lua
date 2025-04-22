@@ -25,10 +25,10 @@ return {
           adapter = require("vars.environment").codecompanion.chat.adapter,
           keymaps = {
             send = {
-              modes = { n = "<C-s>", i = "<C-s>" },
+              modes = { n = "<CR>", i = "<C-s>" },
             },
             close = {
-              modes = { n = "<C-c>", i = "<C-c>" },
+              modes = { n = "<C-q>", i = "<C-q>" },
             },
           },
           slash_commands = require("vars.codecompanion.slash_commands"),
