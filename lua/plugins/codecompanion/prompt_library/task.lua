@@ -23,6 +23,10 @@ return {
       {
         role = constants.SYSTEM_ROLE,
         content = function(context)
+          -- Leverage auto_tool_mode which disables the requirement of approvals and automatically saves any edited buffer
+          vim.g.codecompanion_auto_tool_mode = true
+
+          -- Some clear instructions for the LLM to follow
           return string.format(
             [[ 
 You are a helpful assistant specializing in completing tasks in %s. 
@@ -60,16 +64,24 @@ If you need more information or the task is still ongoing, DO NOT include the co
         repeat_until = function(chat)
           -- Keep repeating until the LLM indicates the task is complete
           -- by checking if the last message contains phrases indicating completion
+          local completion_indicator = "[TASK COMPLETE]"
           local messages = chat.messages
           if #messages >= 1 then
             local last_message = messages[#messages]
             -- Check if the last LLM message indicates completion
             if last_message.role == constants.LLM_ROLE then
-              local completion_indicator = "[TASK COMPLETE]"
-              if last_message.content:lower():find(completion_indicator) then
-                -- Log when task completion is detected
-                log("Task completed successfully! Completion indicator detected.")
-                return true -- Found an indicator of completion
+              -- Split the content string into lines
+              local lines = {}
+              for line in last_message.content:gmatch("[^\r\n]+") do
+                table.insert(lines, line)
+              end
+              -- Check each line for the completion indicator
+              for _, line in ipairs(lines) do
+                if line:find(completion_indicator, 1, true) then
+                  -- Log when task completion is detected with the full line
+                  log("indicator detected in line: " .. line)
+                  return true -- Found an indicator of completion
+                end
               end
             end
           end
