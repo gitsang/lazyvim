@@ -26,7 +26,7 @@ return {
         -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
         language = "Chinese - Simplified",
-        system_prompt = require("vars.codecompanion.system_prompt"),
+        system_prompt = require("plugins.codecompanion.system_prompt"),
       },
       strategies = {
         chat = {
@@ -39,7 +39,7 @@ return {
               modes = { n = "<C-q>", i = "<C-q>" },
             },
           },
-          slash_commands = require("vars.codecompanion.slash_commands"),
+          slash_commands = require("plugins.codecompanion.slash_commands"),
           roles = {
             ---The header name for the LLM's messages
             ---@type string|fun(adapter: CodeCompanion.Adapter): string
@@ -58,8 +58,8 @@ return {
           adapter = require("vars.environment").codecompanion.cmd.adapter,
         },
       },
-      adapters = require("vars.codecompanion.adapter"),
-      prompt_library = require("vars.codecompanion.prompt_library"),
+      adapters = require("plugins.codecompanion.adapter"),
+      prompt_library = require("plugins.codecompanion.prompt_library"),
       display = {
         action_palette = {
           width = 95,
@@ -131,8 +131,8 @@ return {
       },
     },
     init = function()
-      require("plugins.codecompanion.companion-notification").init()
-      require("plugins.codecompanion.codecompanion_autosave")
+      require("plugins.codecompanion.plugins.notification").init()
+      require("plugins.codecompanion.plugins.autosave")
     end,
   },
 }

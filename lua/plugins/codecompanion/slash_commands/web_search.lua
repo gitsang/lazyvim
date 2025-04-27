@@ -1,4 +1,4 @@
-local constants = require("vars.codecompanion.slash_commands.constants")
+local constants = require("plugins.codecompanion.slash_commands.constants")
 
 ---@param chat CodeCompanion.Chat
 local callback = function(chat)

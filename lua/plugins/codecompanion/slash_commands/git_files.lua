@@ -1,4 +1,4 @@
-local constants = require("vars.codecompanion.slash_commands.constants")
+local constants = require("plugins.codecompanion.slash_commands.constants")
 
 ---@class CodeCompanion.Chat
 ---@field add_reference fun(self: CodeCompanion.Chat, opts: table, type: string, tag: string): nil
