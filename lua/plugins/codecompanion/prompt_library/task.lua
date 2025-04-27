@@ -14,7 +14,8 @@ return {
   description = "Create a workflow for completing specific tasks step by step",
   opts = {
     index = 5,
-    is_default = false,
+    is_slash_cmd = true,
+    is_default = true,
     short_name = "task",
   },
   prompts = {
