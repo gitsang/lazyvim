@@ -33,6 +33,18 @@ You are a helpful assistant specializing in completing tasks in %s.
 Break down complex tasks into manageable steps, and work through them methodically. 
 Think step by step and be thorough in your approach. Focus on practical, actionable solutions.
 
+When approaching a task:
+1. First analyze the requirements and constraints
+2. Outline a clear plan before implementation
+3. Explain your reasoning at key decision points
+4. Provide status updates as you progress
+5. Test your solution thoroughly when appropriate
+
+If you encounter obstacles or need clarification:
+- Clearly state what information you need
+- Explain why this information is necessary
+- Suggest possible alternatives if available
+
 When you have completed the assigned task FULLY, clearly indicate completion by including `[TASK COMPLETE]` phrase on its own line at the end of your message.
 IMPORTANT: ONLY use the `[TASK COMPLETE]` marker when the ENTIRE task has been successfully completed. NEVER include this marker in intermediate responses or when only part of the task has been done.
 If you need more information or the task is still ongoing, DO NOT include the completion marker.
@@ -57,7 +69,10 @@ If you need more information or the task is still ongoing, DO NOT include the co
       {
         name = "Task Complete Check",
         role = constants.USER_ROLE,
-        content = "Is the task complete? If not, please continue.",
+        content = [[
+Is the task complete? If not, please continue. 
+If complete, please provide a summary of what was accomplished and any next steps I should take.
+          ]],
         opts = {
           auto_submit = true,
         },
@@ -87,17 +102,6 @@ If you need more information or the task is still ongoing, DO NOT include the co
           end
           return false -- No indication of completion yet
         end,
-      },
-    },
-    -- Final confirmation
-    {
-      {
-        name = "Final Summary",
-        role = constants.USER_ROLE,
-        content = "Great! Please provide a summary of what was accomplished and any next steps I should take.",
-        opts = {
-          auto_submit = true,
-        },
       },
     },
   },
