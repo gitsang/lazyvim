@@ -25,12 +25,13 @@ return {
         content = function(context)
           return string.format(
             [[ 
-            You are a helpful assistant specializing in completing tasks in %s. 
-            Break down complex tasks into manageable steps, and work through them methodically. 
-            Think step by step and be thorough in your approach. Focus on practical, actionable solutions.
+You are a helpful assistant specializing in completing tasks in %s. 
+Break down complex tasks into manageable steps, and work through them methodically. 
+Think step by step and be thorough in your approach. Focus on practical, actionable solutions.
 
-            When you have completed the assigned task, clearly indicate completion by including `[TASK COMPLETE]` phrases on its own line at the end of your message.
-            This helps me recognize when we can move to the next stage.
+When you have completed the assigned task FULLY, clearly indicate completion by including `[TASK COMPLETE]` phrase on its own line at the end of your message.
+IMPORTANT: ONLY use the `[TASK COMPLETE]` marker when the ENTIRE task has been successfully completed. NEVER include this marker in intermediate responses or when only part of the task has been done.
+If you need more information or the task is still ongoing, DO NOT include the completion marker.
             ]],
             context.filetype
           )
