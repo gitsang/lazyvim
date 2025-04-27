@@ -86,6 +86,7 @@ If you need more information or the task is still ongoing, DO NOT include the co
       {
         name = "Task Complete Check",
         role = constants.USER_ROLE,
+        content = "Continue.",
         opts = {
           auto_submit = true,
         },
