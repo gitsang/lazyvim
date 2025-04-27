@@ -9,8 +9,6 @@ return {
   description = "Create a workflow for completing specific tasks step by step",
   opts = {
     index = 5,
-    is_slash_cmd = true,
-    is_default = true,
     short_name = "task",
   },
   prompts = {
@@ -25,7 +23,7 @@ return {
           -- Some clear instructions for the LLM to follow
           return string.format(
             [[ 
-You are a helpful assistant specializing in completing tasks in lua. 
+You are a helpful assistant specializing in completing tasks in %s. 
 Break down complex tasks into manageable steps, and work through them methodically. 
 Think step by step and be thorough in your approach. Focus on practical, actionable solutions.
 
@@ -93,6 +91,7 @@ If you need more information or the task is still ongoing, DO NOT include the co
         repeat_until = function(chat)
           -- Keep repeating until the LLM indicates the task is complete
           -- by checking if the last message contains phrases indicating completion
+          vim.notify("Start repest check", vim.log.levels.DEBUG, { title = "TASK" })
           local completion_indicator = "[TASK COMPLETE]"
           local messages = chat.messages
           if #messages >= 1 then
@@ -107,6 +106,7 @@ If you need more information or the task is still ongoing, DO NOT include the co
               -- Check each line for the completion indicator
               for _, line in ipairs(lines) do
                 if line:find(completion_indicator, 1, true) then
+                  vim.notify("Task completed: " .. line, vim.log.levels.DEBUG, { title = "TASK" })
                   return true -- Found an indicator of completion
                 end
               end
@@ -114,6 +114,17 @@ If you need more information or the task is still ongoing, DO NOT include the co
           end
           return false -- No indication of completion yet
         end,
+      },
+    },
+    -- Final confirmation
+    {
+      {
+        name = "Final Summary",
+        role = constants.USER_ROLE,
+        content = "Great! Please provide a summary of what was accomplished and any next steps I should take.",
+        opts = {
+          auto_submit = true,
+        },
       },
     },
   },
