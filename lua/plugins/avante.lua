@@ -2,7 +2,7 @@
 
 return {
   {
-    "yetone/avante.nvim",
+    "gitsang/avante.nvim",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     build = "make",
