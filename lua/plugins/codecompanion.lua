@@ -25,8 +25,8 @@ return {
       opts = {
         -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
-        language = "Chinese - Simplified",
-        system_prompt = require("plugins.codecompanion.system_prompt"),
+        language = "English",
+        -- system_prompt = require("plugins.codecompanion.system_prompt"),
       },
       strategies = {
         chat = {
