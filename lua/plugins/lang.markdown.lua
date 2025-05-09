@@ -185,4 +185,8 @@ return {
     "gitsang/markdown-title-numbering.nvim",
     opts = {},
   },
+  {
+    'gitsang/markdown-front-matter.nvim',
+    opts = {},
+  },
 }
