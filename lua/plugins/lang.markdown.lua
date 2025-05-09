@@ -187,7 +187,19 @@ return {
   },
   {
     'gitsang/markdown-front-matter.nvim',
-    enabled = false,
-    opts = {},
+    enabled = true,
+    opts = {
+      llm = {
+        provider = "worklink",
+        providers = {
+          ["worklink"] = {
+            base_url = "http://openai-proxy.ops.yl.c8g.top:8888/llmproxy/v1/chat/completions",
+            api_key = require("vars.secret").worklink_llm,
+            model = "gpt-4o",
+          }
+        }
+      },
+      always_update_description = true,  -- Set to true to always update description regardless of existing content
+    },
   },
 }
