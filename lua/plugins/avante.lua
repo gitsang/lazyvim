@@ -50,11 +50,42 @@ return {
           __inherited_from = "openai",
           endpoint = "https://worklink.yealink.com/llmproxy",
           model = "claude-3.7-sonnet",
-          -- api_key_name = "WORKLINK_API_KEY",
           parse_api_key = function()
             return require("vars.secret").worklink_llm
           end,
         },
+        ["worklink-claude-3.7-sonnet"] = {
+          __inherited_from = "openai",
+          endpoint = "https://worklink.yealink.com/llmproxy",
+          model = "claude-3.7-sonnet",
+          parse_api_key = function()
+            return require("vars.secret").worklink_llm
+          end,
+        },
+        ["worklink-gpt-4o"] = {
+          __inherited_from = "openai",
+          endpoint = "https://worklink.yealink.com/llmproxy",
+          model = "gpt-4o",
+          parse_api_key = function()
+            return require("vars.secret").worklink_llm
+          end,
+        },
+        ["worklink-deepseek-r1"] = {
+          __inherited_from = "openai",
+          endpoint = "https://worklink.yealink.com/llmproxy",
+          model = "deepseek-r1",
+          parse_api_key = function()
+            return require("vars.secret").worklink_llm
+          end,
+        },
+        ["worklink-deepseek-v3"] = {
+          __inherited_from = "openai",
+          endpoint = "https://worklink.yealink.com/llmproxy",
+          model = "deepseek-v3",
+          parse_api_key = function()
+            return require("vars.secret").worklink_llm
+          end,
+        }
       },
       dual_boost = {
         enabled = false,
@@ -165,6 +196,32 @@ return {
       suggestion = {
         debounce = 600,
         throttle = 600,
+      },
+      web_search_engine = {
+        provider = "searxng",
+        proxy = nil,
+        providers = {
+          searxng = {
+            api_url_name = "https://searxng.us.c8g.top/",
+            extra_request_body = {
+              format = "json",
+            },
+            ---@type WebSearchEngineProviderResponseBodyFormatter
+            format_response_body = function(body)
+              if body.results == nil then return "", nil end
+              local jsn = vim.iter(body.results):map(
+                function(result)
+                  return {
+                    title = result.title,
+                    url = result.url,
+                    snippet = result.content,
+                  }
+                end
+              )
+              return vim.json.encode(jsn), nil
+            end,
+          },
+        },
       },
     },
   },

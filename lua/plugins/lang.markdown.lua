@@ -187,6 +187,7 @@ return {
   },
   {
     'gitsang/markdown-front-matter.nvim',
+    enabled = false,
     opts = {},
   },
 }
