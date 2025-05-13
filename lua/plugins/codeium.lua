@@ -8,7 +8,7 @@ return {
     opts = {
       enable_cmp_source = true,
       virtual_text = {
-        enabled = false,
+        enabled = true,
         key_bindings = {
           accept = "<C-g>",
         },
