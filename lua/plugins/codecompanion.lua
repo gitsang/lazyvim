@@ -31,6 +31,7 @@ return {
       strategies = {
         chat = {
           adapter = require("vars.environment").codecompanion.chat.adapter,
+          variables = require("plugins.codecompanion.variables"),
           keymaps = {
             send = {
               modes = { n = "<CR>", i = "<C-s>" },
