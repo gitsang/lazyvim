@@ -41,7 +41,8 @@ Your task is to organize commits and generate a structured MR description, then 
           handle:close()
 
           -- Get commit diff
-          local get_commit_diff_cmd = string.format("git -c pager.log=false log %s..%s", target_branch, current_branch)
+          local get_commit_diff_cmd =
+            string.format("git -c pager.log=false log origin/%s..origin/%s", target_branch, current_branch)
           handle = io.popen(get_commit_diff_cmd)
           if not handle then
             return "Error getting commit diff"
@@ -51,7 +52,7 @@ Your task is to organize commits and generate a structured MR description, then 
 
           -- Check if MR exists
           local check_cmd = string.format(
-            "glab mr list --source-branch %s --target-branch %s --per-page 1 2>/dev/null",
+            "glab mr list --source-branch %s --target-branch %s 2>/dev/null",
             current_branch,
             target_branch
           )
@@ -64,15 +65,17 @@ Your task is to organize commits and generate a structured MR description, then 
 
           -- Extract MR ID if exists
           local mr_id = nil
-          if mr_result and mr_result:match("^!(%d+)") then
-            mr_id = mr_result:match("^!(%d+)")
+          if mr_result then
+            if mr_result:match("!([0-9]+)") then
+              mr_id = mr_result:match("!([0-9]+)")
+            end
           end
 
           local mr_task = ""
           if mr_id then
-            mr_task = string.format("update MR #%s", mr_id)
+            mr_task = string.format("update merge request !%s", mr_id)
           else
-            mr_task = "create a new MR"
+            mr_task = "create merge request"
           end
 
           return string.format(
@@ -102,10 +105,12 @@ Please format the description as:
 - <commit_id> - <Summarized commit content>
 ```
 
+Generate the description to tmp file `/tmp/<tmpfile>`.
+
 Step2: Create/Update merge request
 
-Use `glab mr create --source-branch <remote>/<branch> --target-branch <remote>/<branch> --title "<title>" --description "<description>"` to create.
-Use `glab mr update --source-branch <remote>/<branch> --target-branch <remote>/<branch> --title "<title>" --description "<description>"` to update.
+Use `glab mr create --source-branch <branch> --target-branch <branch> --title "<title>" --description "$(cat <tmpfile>)"` to create.
+Use `glab mr update [id] --title "<title>" --description "$(cat <tmpfile>)"` to update.
 
 Please use cmd tools to %s.
 
