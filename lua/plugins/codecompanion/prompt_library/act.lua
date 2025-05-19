@@ -68,7 +68,8 @@ AND all diagnostic checks have passed. NEVER include this marker in intermediate
 only part of the task has been done or when diagnostics have detected issues.
 If you need more information or the task is still ongoing, DO NOT include the completion marker.
             ]],
-            context.filetype, completion_indicator
+            context.filetype,
+            completion_indicator
           )
         end,
         opts = {

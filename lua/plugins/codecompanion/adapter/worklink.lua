@@ -11,7 +11,7 @@ function M.setup()
     },
     schema = {
       model = {
-        default = "claude-3.7-sonnet",
+        default = "gpt-4o",
         choices = {
           "gpt-4o",
           "gpt-4o-mini",
