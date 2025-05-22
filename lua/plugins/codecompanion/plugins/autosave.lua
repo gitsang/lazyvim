@@ -34,7 +34,7 @@ local function save_codecompanion_buffer(bufnr)
 
   -- Extract the unique ID from the buffer name
   local id = bufname:match("%[CodeCompanion%] (%d+)")
-  local date = os.date("%Y-%m-%d")
+  local date = os.date("+%Y-%m-%dT%H:%M:%S")
   local save_path
 
   if id then

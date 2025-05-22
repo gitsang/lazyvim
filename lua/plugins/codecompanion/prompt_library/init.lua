@@ -6,4 +6,5 @@ return {
   ["Merge Request"] = require("plugins.codecompanion.prompt_library.merge_request"),
   ["Task"] = require("plugins.codecompanion.prompt_library.task"),
   ["Act"] = require("plugins.codecompanion.prompt_library.act"),
+  ["Ask"] = require("plugins.codecompanion.prompt_library.ask"),
 }

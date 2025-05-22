@@ -85,7 +85,7 @@ return {
           parse_api_key = function()
             return require("vars.secret").worklink_llm
           end,
-        }
+        },
       },
       dual_boost = {
         enabled = false,
@@ -148,7 +148,7 @@ return {
           close_from_input = nil, -- 例如，{ normal = "<Esc>", insert = "<C-d>" }
         },
       },
-      hints = { enabled = true },
+      hints = { enabled = false },
       windows = {
         ---@type "right" | "left" | "top" | "bottom"
         position = "right", -- 侧边栏的位置
@@ -208,16 +208,16 @@ return {
             },
             ---@type WebSearchEngineProviderResponseBodyFormatter
             format_response_body = function(body)
-              if body.results == nil then return "", nil end
-              local jsn = vim.iter(body.results):map(
-                function(result)
-                  return {
-                    title = result.title,
-                    url = result.url,
-                    snippet = result.content,
-                  }
-                end
-              )
+              if body.results == nil then
+                return "", nil
+              end
+              local jsn = vim.iter(body.results):map(function(result)
+                return {
+                  title = result.title,
+                  url = result.url,
+                  snippet = result.content,
+                }
+              end)
               return vim.json.encode(jsn), nil
             end,
           },

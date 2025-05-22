@@ -1,5 +1,3 @@
-local fmt = string.format
-
 local constants = {
   LLM_ROLE = "llm",
   USER_ROLE = "user",
@@ -54,7 +52,7 @@ Additionally, you must:
           table.insert(diagnostic_messages, diagnostic.message)
         end
 
-        return fmt(
+        return string.format(
           [[
 #buffer
 
