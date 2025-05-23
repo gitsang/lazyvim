@@ -11,7 +11,7 @@ function M.setup()
     },
     schema = {
       model = {
-        default = "tngtech/deepseek-r1t-chimera:free",
+        default = "google/gemini-2.0-flash-exp:free",
         choices = {
           "deepseek/deepseek-r1:free", -- 164K Context
           "tngtech/deepseek-r1t-chimera:free", -- 164K Context
