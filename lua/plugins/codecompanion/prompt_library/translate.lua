@@ -52,6 +52,8 @@ Please reply in the following format:
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
         return fmt(
           [[
+Translate:
+
 ```
 %s
 ```
