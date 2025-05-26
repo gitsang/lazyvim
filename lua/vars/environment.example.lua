@@ -9,11 +9,8 @@ return {
     cmd = {
       adapter = "YOUR_ADAPTER_HERE",
     },
-    languages = {
-      communicate = "YOUR_COMMUNICATE_HERE",
-      output = "YOUR_OUTPUT_HERE",
-      comment = "YOUR_COMMENT_HERE",
-    },
+    default_model = "claude-3.7-sonnet",
+    language = "English",
   },
   net_interface = "YOUR_NET_INTERFACE_HERE",
   default_browser = "YOUR_DEFAULT_BROWSER_HERE",

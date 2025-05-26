@@ -1,5 +1,3 @@
-local secret = require("vars.secret")
-
 local M = {}
 
 function M.setup()
@@ -7,11 +5,11 @@ function M.setup()
     name = "worklink",
     env = {
       url = "https://worklink.yealink.com/llmproxy",
-      api_key = secret.worklink_llm,
+      api_key = require("vars.secret").worklink_llm,
     },
     schema = {
       model = {
-        default = "gpt-4o",
+        default = require("vars.environment").codecompanion.default_model,
         choices = {
           "gpt-4o",
           "gpt-4o-mini",
