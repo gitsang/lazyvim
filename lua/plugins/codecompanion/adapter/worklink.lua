@@ -21,6 +21,7 @@ function M.setup()
           "claude-3.5-haiku",
           "claude-3.5-sonnet",
           "claude-3.7-sonnet",
+          "claude-4.0-sonnet",
         },
       },
     },
