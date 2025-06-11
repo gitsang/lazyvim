@@ -45,7 +45,7 @@ return {
       provider = "worklink",
       auto_suggestions_provider = "worklink",
       cursor_applying_provider = nil,
-      vendors = {
+      providers = {
         ["worklink"] = {
           __inherited_from = "openai",
           endpoint = "https://worklink.yealink.com/llmproxy",
