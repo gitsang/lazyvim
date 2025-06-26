@@ -37,23 +37,23 @@ function M.list_adapters()
   print("[GitAICommit] Configured adapters:")
   for name, adapter in pairs(config.adapters) do
     local status = (name == config.adapter) and "* " or "  "
-    print(status .. name .. " - " .. adapter.model .. " @ " .. adapter.base_url)
+    print(status .. name .. " - " .. adapter.model)
   end
 end
 
 local function get_adapter(name)
-  local adapter_name = name or config.adapter
-  if not adapter_name then
+  name = name or config.adapter
+  if not name then
     return nil, "No adapter specified and no default adapter set"
   end
 
-  local adapter = config.adapters[adapter_name]
+  local adapter = config.adapters[name]
   if not adapter then
-    return nil, "Adapter '" .. adapter_name .. "' not found"
+    return nil, "Adapter '" .. name .. "' not found"
   end
 
   if not adapter.base_url or not adapter.api_key or not adapter.model then
-    return nil, "Adapter '" .. adapter_name .. "' is not fully configured"
+    return nil, "Adapter '" .. name .. "' is not fully configured"
   end
 
   return adapter, nil
