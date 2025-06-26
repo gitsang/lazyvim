@@ -1,20 +1,19 @@
 local M = {}
 
-function M.tidy()
-  vim.cmd("w")
-
-  local cmd = "go mod tidy"
-  print("[GoMod CMD] " .. cmd)
-
-  local result = vim.fn.system(cmd)
-  local exit_code = vim.v.shell_error
-
-  if exit_code ~= 0 then
-    print("[GoMod Error] " .. result)
-    return
+local function run_in_terminal(cmd, title)
+  local term_cmd = "terminal " .. cmd
+  vim.cmd("botright split")
+  vim.cmd("resize 15")
+  vim.cmd(term_cmd)
+  vim.cmd("setlocal nonumber norelativenumber")
+  if title then
+    vim.cmd("file " .. title)
   end
+end
 
-  print("[GoMod] Module tidied successfully")
+function M.tidy()
+  local cmd = "go mod tidy"
+  run_in_terminal(cmd, "GitDiff")
 end
 
 function M.setup()
@@ -26,4 +25,3 @@ function M.setup()
 end
 
 return M
-
