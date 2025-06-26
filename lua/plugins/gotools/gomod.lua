@@ -13,7 +13,7 @@ end
 
 function M.tidy()
   local cmd = "go mod tidy"
-  run_in_terminal(cmd, "GitDiff")
+  run_in_terminal(cmd, "GoMod")
 end
 
 function M.setup()
