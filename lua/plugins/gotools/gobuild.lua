@@ -13,6 +13,17 @@ local M = {}
   :GoTest -run TestMyFunction
 ]]
 
+local function run_in_terminal(cmd, title)
+  local term_cmd = "terminal " .. cmd
+  vim.cmd("botright split")
+  vim.cmd("resize 15")
+  vim.cmd(term_cmd)
+  vim.cmd("setlocal nonumber norelativenumber")
+  if title then
+    vim.cmd("file " .. title)
+  end
+end
+
 function M.build(...)
   vim.cmd("w")
 
@@ -42,15 +53,7 @@ function M.build(...)
   local cmd = table.concat(cmds, " ")
   print("[GoBuild CMD] " .. cmd)
 
-  local result = vim.fn.system(cmd)
-  local exit_code = vim.v.shell_error
-
-  if exit_code ~= 0 then
-    print("[GoBuild Error] " .. result)
-    return
-  end
-
-  print("[GoBuild] Build completed successfully")
+  run_in_terminal(cmd, "GoBuild")
 end
 
 function M.run(...)
@@ -81,15 +84,7 @@ function M.run(...)
   local cmd = table.concat(cmds, " ")
   print("[GoRun CMD] " .. cmd)
 
-  local result = vim.fn.system(cmd)
-  local exit_code = vim.v.shell_error
-
-  if exit_code ~= 0 then
-    print("[GoRun Error] " .. result)
-    return
-  end
-
-  print("[GoRun Output]\n" .. result)
+  run_in_terminal(cmd, "GoRun")
 end
 
 function M.test(...)
@@ -122,15 +117,7 @@ function M.test(...)
   local cmd = table.concat(cmds, " ")
   print("[GoTest CMD] " .. cmd)
 
-  local result = vim.fn.system(cmd)
-  local exit_code = vim.v.shell_error
-
-  if exit_code ~= 0 then
-    print("[GoTest Error] " .. result)
-    return
-  end
-
-  print("[GoTest Output]\n" .. result)
+  run_in_terminal(cmd, "GoTest")
 end
 
 function M.setup()
