@@ -2,9 +2,19 @@ local M = {}
 
 -- Configuration storage
 local config = {
-  openai_base_url = nil,
-  openai_key = nil,
-  model = nil,
+  adapter = "worklink",
+  adapters = {
+    default = {
+      base_url = "https://api.openai.com/v1",
+      api_key = "",
+      model = "gpt-3.5-turbo",
+    },
+    worklink = {
+      base_url = "https://worklink.yealink.com/llmproxy",
+      api_key = require("vars.secret").worklink_llm,
+      model = "gpt-4o",
+    },
+  },
 }
 
 local function run_in_terminal(cmd, title)
@@ -18,56 +28,63 @@ local function run_in_terminal(cmd, title)
   end
 end
 
-function M.ai_commit()
-  vim.cmd("w")
-
-  local cmds = { "aicommit" }
-
-  -- Check if configuration is set
-  if not config.openai_base_url or not config.openai_key or not config.model then
-    print("[GitAICommit Error] Configuration not set. Please run :GitAICommitConfig first")
+function M.list_adapters()
+  if vim.tbl_isempty(config.adapters) then
+    print("[GitAICommit] No adapters configured")
     return
   end
 
-  -- Add configuration parameters
-  table.insert(cmds, "--openai-base-url")
-  table.insert(cmds, config.openai_base_url)
-  table.insert(cmds, "--openai-key")
-  table.insert(cmds, config.openai_key)
-  table.insert(cmds, "--model")
-  table.insert(cmds, config.model)
-
-  local cmd = table.concat(cmds, " ")
-  print("[GitAICommit CMD] " .. cmd:gsub(config.openai_key, "***")) -- Hide API key in output
-  run_in_terminal(cmd, "GitAICommit")
+  print("[GitAICommit] Configured adapters:")
+  for name, adapter in pairs(config.adapters) do
+    local status = (name == config.adapter) and "* " or "  "
+    print(status .. name .. " - " .. adapter.model .. " @ " .. adapter.base_url)
+  end
 end
 
-function M.configure()
-  -- Prompt for configuration
-  local base_url = vim.fn.input("OpenAI Base URL: ", config.openai_base_url or "https://api.openai.com/v1")
-  if base_url == "" then
+local function get_adapter(name)
+  local adapter_name = name or config.adapter
+  if not adapter_name then
+    return nil, "No adapter specified and no default adapter set"
+  end
+
+  local adapter = config.adapters[adapter_name]
+  if not adapter then
+    return nil, "Adapter '" .. adapter_name .. "' not found"
+  end
+
+  if not adapter.base_url or not adapter.api_key or not adapter.model then
+    return nil, "Adapter '" .. adapter_name .. "' is not fully configured"
+  end
+
+  return adapter, nil
+end
+
+function M.ai_commit(opts)
+  vim.cmd("w")
+
+  opts = opts or {}
+  local adapter_name = opts.adapter
+
+  local adapter, err = get_adapter(adapter_name)
+  if not adapter then
+    print("[GitAICommit Error] " .. err)
+    print("Available adapters: " .. table.concat(vim.tbl_keys(config.adapters), ", "))
+    print("Use :GitAICommitConfig to configure adapters")
     return
   end
 
-  local api_key = vim.fn.input("OpenAI API Key: ", config.openai_key or "")
-  if api_key == "" then
-    return
-  end
+  local cmds = { "aicommit" }
+  table.insert(cmds, "--openai-base-url")
+  table.insert(cmds, adapter.base_url)
+  table.insert(cmds, "--openai-key")
+  table.insert(cmds, adapter.api_key)
+  table.insert(cmds, "--model")
+  table.insert(cmds, adapter.model)
 
-  local model = vim.fn.input("Model: ", config.model or "gpt-3.5-turbo")
-  if model == "" then
-    return
-  end
-
-  -- Save configuration
-  config.openai_base_url = base_url
-  config.openai_key = api_key
-  config.model = model
-
-  print("\n[GitAICommit] Configuration saved successfully!")
-  print("Base URL: " .. base_url)
-  print("Model: " .. model)
-  print("API Key: ***")
+  local cmd = table.concat(cmds, " ")
+  print("[GitAICommit] Using adapter: " .. (adapter_name or config.adapter))
+  print("[GitAICommit] " .. cmd:gsub(adapter.api_key, "***")) -- Hide API key in output
+  run_in_terminal(cmd, "GitAICommit-" .. (adapter_name or config.adapter))
 end
 
 function M.setup()
@@ -77,12 +94,11 @@ function M.setup()
     desc = "Generate AI commit message using aicommit",
   })
 
-  vim.api.nvim_create_user_command("GitAICommitConfig", function()
-    M.configure()
+  vim.api.nvim_create_user_command("GitAICommitList", function()
+    M.list_adapters()
   end, {
-    desc = "Configure GitAICommit settings (base URL, API key, model)",
+    desc = "List all configured adapters",
   })
 end
 
 return M
-

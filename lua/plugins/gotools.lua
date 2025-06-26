@@ -1,6 +1,6 @@
 return {
   {
-    "golang/tools",
+    "local/gotools",
     dir = vim.fn.stdpath("config") .. "/lua/plugins/gotools",
     ft = "go",
     config = function()
