@@ -7,24 +7,22 @@ local constants = {
 local completion_indicator = "[TASK COMPLETE]"
 
 return {
-  strategy = "workflow",
-  description = "Create a workflow for completing specific tasks step by step",
+  strategy = "chat",
+  description = "Create a chat for completing specific tasks step by step",
   opts = {
     index = 5,
     short_name = "task",
   },
   prompts = {
     {
-      -- Initial setup with system instructions and task description
-      {
-        role = constants.SYSTEM_ROLE,
-        content = function(context)
-          -- Leverage auto_tool_mode which disables the requirement of approvals and automatically saves any edited buffer
-          vim.g.codecompanion_auto_tool_mode = true
+      role = constants.SYSTEM_ROLE,
+      content = function(context)
+        -- Leverage auto_tool_mode which disables the requirement of approvals and automatically saves any edited buffer
+        vim.g.codecompanion_auto_tool_mode = true
 
-          -- Some clear instructions for the LLM to follow
-          return string.format(
-            [[ 
+        -- Some clear instructions for the LLM to follow
+        return string.format(
+          [[ 
 You are a helpful assistant specializing in completing tasks in %s. 
 Break down complex tasks into manageable steps, and work through them methodically. 
 Think step by step and be thorough in your approach. Focus on practical, actionable solutions.
@@ -68,66 +66,19 @@ AND all diagnostic checks have passed. NEVER include this marker in intermediate
 only part of the task has been done or when diagnostics have detected issues.
 If you need more information or the task is still ongoing, DO NOT include the completion marker.
             ]],
-            context.filetype, completion_indicator
-          )
-        end,
-        opts = {
-          visible = false,
-        },
-      },
-      {
-        role = constants.USER_ROLE,
-        content = "@full_stack_dev I need you to complete the following task: ",
-        opts = {
-          auto_submit = false,
-        },
+          context.filetype,
+          completion_indicator
+        )
+      end,
+      opts = {
+        visible = false,
       },
     },
-    -- Repeat until completion
     {
-      {
-        name = "Task Complete Check",
-        role = constants.USER_ROLE,
-        content = "@full_stack_dev Continue.",
-        opts = {
-          auto_submit = true,
-        },
-        repeat_until = function(chat)
-          -- Keep repeating until the LLM indicates the task is complete
-          -- by checking if the last message contains phrases indicating completion
-          vim.notify("Start repeat check", vim.log.levels.DEBUG, { title = "TASK" })
-          local messages = chat.messages
-          if #messages >= 1 then
-            local last_message = messages[#messages]
-            -- Check if the last LLM message indicates completion
-            if last_message.role == constants.LLM_ROLE then
-              -- Split the content string into lines
-              local lines = {}
-              for line in last_message.content:gmatch("[^\r\n]+") do
-                table.insert(lines, line)
-              end
-              -- Check each line for the completion indicator
-              for _, line in ipairs(lines) do
-                if line:find(completion_indicator, 1, true) then
-                  vim.notify("Task completed: " .. line, vim.log.levels.DEBUG, { title = "TASK" })
-                  return true -- Found an indicator of completion
-                end
-              end
-            end
-          end
-          return false -- No indication of completion yet
-        end,
-      },
-    },
-    -- Final confirmation
-    {
-      {
-        name = "Final Summary",
-        role = constants.USER_ROLE,
-        content = "Great! Please provide a summary of what was accomplished and any next steps I should take.",
-        opts = {
-          auto_submit = true,
-        },
+      role = constants.USER_ROLE,
+      content = "@{full_stack_dev} I need you to complete the following task: ",
+      opts = {
+        auto_submit = false,
       },
     },
   },
