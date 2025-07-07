@@ -4,8 +4,11 @@ function M.setup()
   return require("codecompanion.adapters").extend("openai_compatible", {
     name = "worklink",
     env = {
-      url = "https://worklink.yealink.com/llmproxy",
+      url = "https://yllm.worklink.work/yllm",
       api_key = require("vars.secret").worklink_llm,
+    },
+    headers = {
+      ["User-Agent"] = "CodeCompanion.nvim",
     },
     schema = {
       model = {
