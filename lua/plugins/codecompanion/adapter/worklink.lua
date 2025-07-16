@@ -12,7 +12,7 @@ function M.setup()
     },
     schema = {
       model = {
-        default = require("vars.environment").codecompanion.default_model,
+        default = "claude-4.0-sonnet",
         choices = {
           "gpt-4o",
           "gpt-4o-mini",
