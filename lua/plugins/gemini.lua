@@ -17,11 +17,11 @@ return {
     dependencies = {
       "folke/snacks.nvim",
     },
-    cmd = "QwenCode",
+    cmd = "Qwen",
     keys = {
-      { "<leader>qq", "<cmd>QwenCode toggle<cr>", desc = "Toggle Qwen Code" },
-      { "<leader>qa", "<cmd>QwenCode ask<cr>", desc = "Ask Qwen", mode = { "n", "v" } },
-      { "<leader>qf", "<cmd>QwenCode add_file<cr>", desc = "Add File" },
+      { "<leader>qq", "<cmd>Qwen toggle<cr>", desc = "Toggle Qwen Code" },
+      { "<leader>qa", "<cmd>Qwen ask<cr>", desc = "Ask Qwen", mode = { "n", "v" } },
+      { "<leader>qf", "<cmd>Qwen add_file<cr>", desc = "Add File" },
     },
     config = true,
   },
