@@ -54,7 +54,7 @@ Additionally, you must:
 
         return string.format(
           [[
-#buffer
+#{buffer}
 
 Please analyze the code and diagnostic information in buffer %d and explain how to fix it:
 
