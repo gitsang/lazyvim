@@ -11,23 +11,28 @@ local function align_yaml_values(column)
   -- Save current cursor position
   local view = vim.fn.winsaveview()
 
-  -- Pattern to match key-value pairs in YAML (key: value)
-  -- This will match lines with format: key: value or key:value
-  local pattern = "^(%s*)([^:#%s][^:]*):(%s*)(.*)$"
-
   -- Get all lines in the buffer
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local new_lines = {}
 
   -- Process each line
-  local new_lines = {}
   for _, line in ipairs(lines) do
-    local indent, key, sep_space, value = line:match(pattern)
+    -- Match lines that look like YAML key-value pairs: key: value
+    -- But not multiline indicators or already aligned lines
+    local indent, key, spaces, value = line:match("^(%s*)([^:#%s][^:]*):(%s*)(.*)$")
+
     if key and value and value ~= "" then
-      -- Calculate how many spaces we need to align the value at the specified column
-      local key_part_length = #indent + #key + 1 + #sep_space
-      local spaces_needed = math.max(0, column - key_part_length)
-      local new_line = indent .. key .. ":" .. string.rep(" ", spaces_needed) .. value
-      table.insert(new_lines, new_line)
+      -- Check if this is a multiline indicator
+      if value:match("^[%|%>][%-]?%s*$") or value:match("^[%|%>][%-]?%s+.+") then
+        -- This is a multiline start, just keep it as is
+        table.insert(new_lines, line)
+      else
+        -- Regular key-value pair, align it
+        local key_part_length = #indent + #key + 1 + #spaces
+        local spaces_needed = math.max(0, column - key_part_length)
+        local new_line = indent .. key .. ":" .. string.rep(" ", spaces_needed) .. value
+        table.insert(new_lines, new_line)
+      end
     else
       -- Keep lines that don't match the pattern unchanged
       table.insert(new_lines, line)
