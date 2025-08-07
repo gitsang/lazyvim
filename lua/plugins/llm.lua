@@ -12,7 +12,6 @@ return {
   {
     "huggingface/llm.nvim",
     enabled = true,
-
     opts = {
       -- backend = "openai",
       -- url = "http://10.60.20.7:1234/v1",
@@ -23,14 +22,17 @@ return {
       -- model = "qwen2.5-coder:7b",
       --
       backend = "openai",
-      url = "https://api.siliconflow.cn/v1",
+      -- url = "https://api.siliconflow.cn/v1",
+      url = "http://openai-proxy.ops.yl.c8g.top:8888/siliconflow/v1",
       api_token = require("vars.secret").siliconflow,
       model = "Qwen/Qwen3-Coder-30B-A3B-Instruct",
       --
       -- backend = "openai",
       -- url = "https://api-inference.modelscope.cn/v1",
+      -- url = "http://openai-proxy.ops.yl.c8g.top:8888/modelscope/v1",
       -- api_token = require("vars.secret").modelscope,
       -- model = "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      --
       tokens_to_clear = { "<|endoftext|>" },
       fim = {
         enabled = true,
