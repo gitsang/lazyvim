@@ -19,7 +19,7 @@ return {
     enabled = false,
     init = function()
       vim.g.llama_config = {
-        endpoint = "http://10.60.20.7:1234/v1/completions",
+        endpoint = "http://openai-proxy.ops.yl.c8g.top:8888/lmstudio/v1/completions",
         auto_fim = true,
       }
     end,
