@@ -16,17 +16,20 @@ local default_stop = {
 return {
   {
     "ggml-org/llama.vim",
-    enabled = false,
+    enabled = true,
     init = function()
+      -- docker run --name llama.cpp -v ./cache:/root/.cache/llama.cpp -p 8012:8012 -d ghcr.io/ggml-org/llama.cpp:server --fim-qwen-1.5b-default
       vim.g.llama_config = {
-        endpoint = "http://openai-proxy.ops.yl.c8g.top:8888/lmstudio/v1/completions",
-        auto_fim = true,
+        endpoint = "http://127.0.0.1:8012/infill",
+        keymap_accept_full = "<C-g>",
+        keymap_accept_line = "<C-l>",
+        keymap_accept_word = "<C-b>",
       }
     end,
   },
   {
     "huggingface/llm.nvim",
-    enabled = true,
+    enabled = false,
     opts = {
       -- https://api.siliconflow.cn/v1
       backend = "openai",
