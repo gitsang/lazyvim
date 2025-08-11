@@ -32,10 +32,29 @@ return {
     enabled = false,
     opts = {
       -- https://api.siliconflow.cn/v1
+      -- backend = "openai",
+      -- url = "http://openai-proxy.ops.yl.c8g.top:8888/siliconflow/v1",
+      -- api_token = require("vars.secret").siliconflow,
+      -- model = "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      -- tokens_to_clear = { "<|endoftext|>" },
+      -- fim = {
+      --   enabled = true,
+      --   prefix = "<|fim_prefix|>",
+      --   middle = "<|fim_middle|>",
+      --   suffix = "<|fim_suffix|>",
+      -- },
+      -- request_body = {
+      --   temperature = 0.7,
+      --   top_p = 0.8,
+      --   truncation = "auto",
+      --   stop = default_stop,
+      -- },
+
+      -- vllm
       backend = "openai",
-      url = "http://openai-proxy.ops.yl.c8g.top:8888/siliconflow/v1",
-      api_token = require("vars.secret").siliconflow,
-      model = "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      url = "http://10.60.20.7:8080",
+      api_token = "-",
+      model = "qwen/qwen3-coder-30b-a3b-instruct",
       tokens_to_clear = { "<|endoftext|>" },
       fim = {
         enabled = true,
@@ -49,24 +68,6 @@ return {
         truncation = "auto",
         stop = default_stop,
       },
-
-      -- lmstudio
-      -- backend = "openai",
-      -- url = "http://10.60.20.7:1234",
-      -- api_token = "-",
-      -- model = "qwen/qwen3-coder-30b",
-      -- tokens_to_clear = { "<|endoftext|>" },
-      -- fim = {
-      --   enabled = true,
-      --   prefix = "<|fim_prefix|>",
-      --   middle = "<|fim_middle|>",
-      --   suffix = "<|fim_suffix|>",
-      -- },
-      -- request_body = {
-      --   temperature = 0.7,
-      --   top_p = 0.8,
-      --   truncation = "auto",
-      -- },
 
       debounce_ms = 150,
       accept_keymap = "<C-g>",
