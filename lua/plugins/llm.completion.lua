@@ -18,7 +18,8 @@ return {
     "ggml-org/llama.vim",
     enabled = true,
     init = function()
-      -- docker run --name llama.cpp -v ./cache:/root/.cache/llama.cpp -p 8012:8012 -d ghcr.io/ggml-org/llama.cpp:server --fim-qwen-1.5b-default
+      -- docker run --name llama-server -v ./cache:/root/.cache/llama.cpp -p 8012:8012 -d ghcr.io/ggml-org/llama.cpp:server -hf ggml-org/Qwen2.5-Coder-0.5B-Q8_0-GGUF --port 8012
+      -- docker run --name llama-server -v ./cache:/root/.cache/llama.cpp -p 8012:8012 -d ghcr.io/ggml-org/llama.cpp:server -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:TQ1_0 --port 8012
       vim.g.llama_config = {
         endpoint = "http://127.0.0.1:8012/infill",
         keymap_accept_full = "<C-g>",
