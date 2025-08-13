@@ -44,7 +44,7 @@ Additionally, you must:
 
         return fmt(
           [[
-#buffer
+#{buffer}
 
 Please explain this code in buffer %d
 

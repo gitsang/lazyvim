@@ -56,7 +56,7 @@ Additionally, you must:
 
         return fmt(
           [[
-@editor #buffer
+@editor #{buffer}
 
 Please fix the code in buffer %d and explain the fix method:
 

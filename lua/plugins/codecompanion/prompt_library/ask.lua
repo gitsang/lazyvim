@@ -63,7 +63,7 @@ You must:
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
         return string.format(
           [[
-I have the following code in buffer %d #buffer:
+I have the following code in buffer %d #{buffer}:
 
 ```%s
 %s
