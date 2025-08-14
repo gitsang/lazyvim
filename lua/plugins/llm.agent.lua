@@ -49,6 +49,17 @@ return {
     config = true,
   },
   {
+    "gitsang/crush.nvim",
+    opts = {
+      width = 80, -- Width of the vertical split
+      crush_cmd = "crush", -- Command to run in the terminal
+    },
+    cmd = { "Crush" },
+    keys = {
+      { "<leader>C", "<cmd>Crush<cr>", desc = "Toggle Crush" },
+    },
+  },
+  {
     "ravitemer/mcphub.nvim",
     enabled = false,
     dependencies = {
