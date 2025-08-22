@@ -4,14 +4,6 @@ return {
   dependencies = { "folke/snacks.nvim" },
   keys = {
     {
-      "y",
-      function()
-        local keys = vim.api.nvim_replace_termcodes("<Plug>(YankyYank)", true, false, true)
-        vim.api.nvim_feedkeys(keys, "n", false)
-      end,
-      desc = "Yanky PutAfter",
-    },
-    {
       "p",
       function()
         vim.cmd("rshada")
@@ -32,4 +24,20 @@ return {
     { "<leader>SW", "<cmd>wshada<cr>", desc = "Write Shada" },
     { "<leader>SR", "<cmd>rshada<cr>", desc = "Read Shada" },
   },
+  config = function(_, opts)
+    require("yanky").setup(opts)
+
+    vim.api.nvim_create_autocmd("TextYankPost", {
+      callback = function()
+        vim.cmd("wshada")
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = function()
+        vim.cmd("rshada")
+      end,
+    })
+    vim.opt.updatetime = 200
+  end,
 }
