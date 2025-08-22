@@ -14,6 +14,7 @@ return {
     {
       "p",
       function()
+        vim.cmd("rshada")
         local keys = vim.api.nvim_replace_termcodes("<Plug>(YankyPutAfter)", true, false, true)
         vim.api.nvim_feedkeys(keys, "n", false)
       end,
@@ -22,6 +23,7 @@ return {
     {
       "<leader>p",
       function()
+        vim.cmd("rshada")
         ---@diagnostic disable-next-line: undefined-field
         Snacks.picker.yanky()
       end,
