@@ -51,7 +51,7 @@ return {
   {
     "gitsang/crush.nvim",
     opts = {
-      width = 80, -- Width of the vertical split
+      width = 60, -- Width of the vertical split
       crush_cmd = "crush --yolo", -- Command to run in the terminal
     },
     cmd = { "Crush" },
