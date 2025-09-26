@@ -6,6 +6,27 @@ return {
       indent = {
         scope = { enabled = false },
       },
+      dashboard = {
+        sections = {
+          { section = "header" },
+          {
+            pane = 1,
+            { section = "keys", padding = 1, gap = 1 },
+            { section = "startup" },
+          },
+          {
+            pane = 2,
+            {
+              section = "terminal",
+              cmd = "output=$(fortune | cowsay); padding=$(( (14 - $(echo $output | wc -l)) / 2 )); [ $padding -gt 0 ] && printf '%.0s\n' $(seq 1 $padding); echo $output | lolcat; sleep .1",
+              random = 10,
+              height = 14,
+            },
+            { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 2 },
+            { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+          },
+        },
+      },
     },
   },
   {
