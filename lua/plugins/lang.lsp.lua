@@ -1,16 +1,15 @@
-local function disable_keymap()
-  -- Customizing LSP Keymaps
-  -- https://www.lazyvim.org/plugins/lsp
-  local keys = require("lazyvim.plugins.lsp.keymaps").get()
-  keys[#keys + 1] = { "<leader>cc", mode = { "n", "v" }, false }
-end
-
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = function()
-      disable_keymap()
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            { "<leader>cc", mode = { "n", "v" }, false },
+          },
+        },
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
