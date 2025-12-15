@@ -21,7 +21,7 @@ return {
       --      -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:TQ1_0 \
       --      --port 8012
       vim.g.llama_config = {
-        endpoint = "http://10.8.0.18:8012/infill",
+        endpoint = "http://localhost:8012/infill",
         keymap_accept_full = "<C-g>",
         keymap_accept_line = "<C-l>",
         keymap_accept_word = "<C-b>",
