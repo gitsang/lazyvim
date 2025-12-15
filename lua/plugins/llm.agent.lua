@@ -44,12 +44,12 @@ return {
       opts = {
         -- ~/.local/state/nvim/codecompanion.log
         log_level = "TRACE",
-        language = require("vars.environment").codecompanion.language,
+        language = require("vars.config").codecompanion.language,
         -- system_prompt = require("plugins.codecompanion.system_prompt"),
       },
       strategies = {
         chat = {
-          adapter = require("vars.environment").codecompanion.chat.adapter,
+          adapter = require("vars.config").codecompanion.chat.adapter,
           variables = require("plugins.codecompanion.variables"),
           keymaps = {
             send = {
@@ -70,10 +70,10 @@ return {
           },
         },
         inline = {
-          adapter = require("vars.environment").codecompanion.inline.adapter,
+          adapter = require("vars.config").codecompanion.inline.adapter,
         },
         cmd = {
-          adapter = require("vars.environment").codecompanion.cmd.adapter,
+          adapter = require("vars.config").codecompanion.cmd.adapter,
         },
       },
       adapters = require("plugins.codecompanion.adapter"),

@@ -1,6 +1,6 @@
 return function(opts)
   local language = opts.language or "Chinese - Simplified"
-  local env = require("vars.environment")
+  local env = require("vars.config")
   local codecompanion_config = env.codecompanion or {}
   local user_languages = codecompanion_config.languages or {}
   local languages = {

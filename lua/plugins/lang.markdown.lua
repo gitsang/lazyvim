@@ -8,8 +8,8 @@ local function get_first_ip(interface)
   return result and result:match("%d+%.%d+%.%d+%.%d+")
 end
 
-local default_browser = require("vars.environment").default_browser
-local net_interface = require("vars.environment").net_interface
+local default_browser = require("vars.config").default_browser
+local net_interface = require("vars.config").net_interface
 local main_ip = get_first_ip(net_interface)
 local HOME = os.getenv("HOME")
 
@@ -190,12 +190,17 @@ return {
     enabled = true,
     opts = {
       llm = {
-        provider = "worklink",
+        provider = "zai",
         providers = {
-          ["worklink"] = {
-            base_url = "http://openai-proxy.ops.yl.c8g.top:8888/llmproxy/v1/chat/completions",
-            api_key = require("vars.secret").worklink_llm,
+          ["yllm"] = {
+            base_url = "https://yllm.worklink.work/yllm/v1/chat/completions",
+            api_key = require("vars.secret").yllm,
             model = "gpt-4o",
+          },
+          ["zai"] = {
+            base_url = "https://api.z.ai/api/coding/paas/v4/chat/completions",
+            api_key = require("vars.secret").zai,
+            model = "glm-4.6",
           },
         },
       },

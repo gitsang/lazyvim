@@ -5,7 +5,7 @@ function M.setup()
     name = "worklink",
     env = {
       url = "https://yllm.worklink.work/yllm",
-      api_key = require("vars.secret").worklink_llm,
+      api_key = require("vars.secret").yllm,
     },
     headers = {
       ["User-Agent"] = "CodeCompanion.nvim",

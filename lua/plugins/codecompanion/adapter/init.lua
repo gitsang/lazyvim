@@ -1,5 +1,6 @@
 return {
-  worklink = require("plugins.codecompanion.adapter.worklink").setup,
+  yllm = require("plugins.codecompanion.adapter.yllm").setup,
+  zai = require("plugins.codecompanion.adapter.zai").setup,
   openrouter = require("plugins.codecompanion.adapter.openrouter").setup,
   modelscope = require("plugins.codecompanion.adapter.modelscope").setup,
   siliconflow = require("plugins.codecompanion.adapter.siliconflow").setup,
