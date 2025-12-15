@@ -1,4 +1,13 @@
-local env = require("vars.environment")
+local function load_environments()
+  local success, env = pcall(require, "vars/.env")
+  if success then
+    return env
+  else
+    return nil
+  end
+end
+
+local env = load_environments()
 
 return {
   codecompanion = {
