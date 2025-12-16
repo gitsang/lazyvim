@@ -1,5 +1,5 @@
 local function load_environments()
-  local success, env = pcall(require, "vars/.env")
+  local success, env = pcall(require, "vars.env")
   if success then
     return env
   else

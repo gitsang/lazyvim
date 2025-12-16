@@ -2,14 +2,6 @@
 
 return {
   {
-    "coder/claudecode.nvim",
-    dependencies = { "folke/snacks.nvim" },
-    config = true,
-    keys = {
-      { "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-    },
-  },
-  {
     "gitsang/crush.nvim",
     opts = {
       width = 60, -- Width of the vertical split
@@ -34,7 +26,7 @@ return {
     },
     keys = {
       {
-        "<leader>cC",
+        "<leader>cc",
         "<Cmd>CodeCompanionAction<CR>",
         mode = { "n", "v" },
         desc = "CodeCompanion Actions",
@@ -148,5 +140,13 @@ return {
       require("plugins.codecompanion.plugins.notification").init()
       require("plugins.codecompanion.plugins.autosave")
     end,
+  },
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<leader>claude", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    },
   },
 }
