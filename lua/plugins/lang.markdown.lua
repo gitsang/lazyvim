@@ -209,6 +209,14 @@ return {
   },
   {
     "arminveres/md-pdf.nvim",
+    -- # install pandoc
+    -- Download tgz from https://github.com/jgm/pandoc/releases/tag/3.8.3
+    -- `tar xvzf $TGZ --strip-components 1 -C /usr/local`
+    --
+    -- # install latex
+    -- sudo apt install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+    -- sudo apt install -y texlive-luatex texlive-xetex
+    -- sudo apt install -y texlive-full
     branch = "main",
     lazy = true,
     keys = {
@@ -221,7 +229,7 @@ return {
       },
     },
     opts = {
-      margins = "1.5cm",
+      margins = "2.5cm",
       highlight = "tango",
       toc = true,
       title_page = false,
@@ -230,14 +238,16 @@ return {
       end,
       ignore_viewer_state = false,
       fonts = {
-        main_font = nil,
-        sans_font = "DejaVuSans",
-        mono_font = "IosevkaTerm Nerd Font Mono",
+        main_font = "Noto Serif CJK SC",
+        sans_font = "Noto Sans CJK SC",
+        mono_font = "Noto Sans Mono CJK SC",
         math_font = nil,
       },
-      pandoc_user_args = nil,
+      pandoc_user_args = {
+        "-V geometry:a4paper",
+      },
       output_path = "",
-      pdf_engine = "pdflatex",
+      pdf_engine = "xelatex",
     },
   },
 }
