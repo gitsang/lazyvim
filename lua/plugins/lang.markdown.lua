@@ -207,4 +207,37 @@ return {
       always_update_description = true, -- Set to true to always update description regardless of existing content
     },
   },
+  {
+    "arminveres/md-pdf.nvim",
+    branch = "main",
+    lazy = true,
+    keys = {
+      {
+        "<leader>M",
+        function()
+          require("md-pdf").convert_md_to_pdf()
+        end,
+        desc = "Markdown preview",
+      },
+    },
+    opts = {
+      margins = "1.5cm",
+      highlight = "tango",
+      toc = true,
+      title_page = false,
+      preview_cmd = function()
+        return "firefox"
+      end,
+      ignore_viewer_state = false,
+      fonts = {
+        main_font = nil,
+        sans_font = "DejaVuSans",
+        mono_font = "IosevkaTerm Nerd Font Mono",
+        math_font = nil,
+      },
+      pandoc_user_args = nil,
+      output_path = "",
+      pdf_engine = "pdflatex",
+    },
+  },
 }
