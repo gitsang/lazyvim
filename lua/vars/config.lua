@@ -1,27 +1,35 @@
+local function with_defaults(obj, defaults)
+  return setmetatable({}, {
+    __index = function(_, key)
+      return obj[key] or defaults[key]
+    end,
+  })
+end
+
 local function load_environments()
   local success, env = pcall(require, "vars.env")
-  if success then
-    return env
-  else
-    return nil
-  end
+  return success and env or {}
 end
 
 local env = load_environments()
-
-return {
+local env_config = with_defaults(env.config or {}, {
   codecompanion = {
-    language = env and env.config and env.config.codecompanion.language or "English",
+    language = "English",
     chat = {
-      adapter = env and env.config and env.config.codecompanion.chat.adapter or "changeit",
+      adapter = "changeit",
     },
     inline = {
-      adapter = env and env.config and env.config.codecompanion.inline.adapter or "changeit",
+      adapter = "changeit",
     },
     cmd = {
-      adapter = env and env.config and env.config.codecompanion.cmd.adapter or "changeit",
+      adapter = "changeit",
     },
   },
-  net_interface = env and env.config and env.config.net_interface or "eth0",
-  default_browser = env and env.config and env.config.default_browser or "none",
-}
+  net_interface = "eth0",
+  default_browser = "none",
+  llama = {
+    endpoint = "http://localhost:8012/infill",
+  },
+})
+
+return env_config
