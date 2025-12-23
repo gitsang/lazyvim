@@ -4,12 +4,13 @@ return {
   {
     "gitsang/crush.nvim",
     opts = {
-      width = 60, -- Width of the vertical split
+      width = 100, -- Width of the vertical split
       crush_cmd = "crush --yolo", -- Command to run in the terminal
     },
     cmd = { "Crush" },
     keys = {
-      { "<leader>C", "<cmd>Crush<cr>", desc = "Toggle Crush" },
+      { "<leader>C", "<cmd>Crush<cr>", desc = "Toggle Crush", mode = { "n" } },
+      { "<leader>C", ":'<,'>CrushFilePos<cr>", desc = "Copy file path and line info", mode = { "v" } },
     },
   },
   {
