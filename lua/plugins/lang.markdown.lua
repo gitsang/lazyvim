@@ -183,7 +183,7 @@ return {
   },
   {
     "gitsang/markdown-title-numbering.nvim",
-    enabled = false,
+    enabled = true,
     opts = {},
   },
   {
