@@ -7,13 +7,13 @@ return {
       width = 80, -- Width of the vertical split
       fixed_width = true, -- Whether to fix the width (true = locked, false = adjustable)
       crush_cmd = "crush --yolo", -- Command to run in the terminal
-      copy_to_clipboard = true, -- Copy to system clipboard (default: true, set to false if OSC 52 timeout occurs)
+      copy_to_clipboard = true, -- Copy to system clipboard
       actions = {},
     },
     cmd = { "Crush", "CrushFilePos", "CrushActions" },
     keys = {
-      { "<leader>C", "<cmd>Crush<cr>", desc = "Toggle Crush", mode = { "n" } },
-      { "<leader>CP", ":'<,'>CrushFilePos<cr>", desc = "Copy file path and line info", mode = { "v" } },
+      { "<leader>CC", "<cmd>Crush<cr>", desc = "Toggle Crush", mode = { "n" } },
+      { "<leader>CP", ":'<,'>CrushFilePos<cr>", desc = "Copy file path and line info", mode = { "n", "v" } },
       { "<leader>CA", ":'<,'>CrushActions<cr>", desc = "Run Crush actions", mode = { "n", "v" } },
     },
   },
