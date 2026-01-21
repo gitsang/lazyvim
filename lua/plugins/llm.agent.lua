@@ -6,7 +6,7 @@ return {
     opts = {
       width = 80, -- Width of the vertical split
       fixed_width = true, -- Whether to fix the width (true = locked, false = adjustable)
-      crush_cmd = "crush --yolo", -- Command to run in the terminal
+      crush_cmd = "opencode", -- Command to run in the terminal
       copy_to_clipboard = true, -- Copy to system clipboard
       actions = {},
     },
