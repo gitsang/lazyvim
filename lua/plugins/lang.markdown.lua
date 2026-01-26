@@ -266,4 +266,10 @@ return {
       pdf_engine = "xelatex",
     },
   },
+  {
+    "lvht/tagbar-markdown",
+    dependencies = {
+      "majutsushi/tagbar",
+    },
+  },
 }

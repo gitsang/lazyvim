@@ -56,4 +56,7 @@ return {
       end
     end,
   },
+  {
+    "majutsushi/tagbar",
+  },
 }
