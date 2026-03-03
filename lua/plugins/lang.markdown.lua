@@ -184,10 +184,10 @@ return {
   {
     "gitsang/markdown-title-numbering.nvim",
     enabled = true,
+    ft = { "markdown" },
     keys = {
-      { "<leader>mtng", ":MarkdownTitleNumber<CR>", desc = "Number markdown titles" },
-      { "<leader>mtnr", ":MarkdownTitleNumberRemove<CR>", desc = "Remove markdown title numbers" },
-      { "<leader>mtnt", ":MarkdownTitleNumberToggle<CR>", desc = "Toggle markdown title numbering" },
+      { "<leader>mtn", ":MarkdownTitleNumber<CR>", desc = "Number markdown titles" },
+      { "<leader>mtr", ":MarkdownTitleNumberRemove<CR>", desc = "Remove markdown title numbers" },
     },
     opts = {
       auto_number_on_save = true, -- Auto number on save
