@@ -18,6 +18,14 @@ return {
     },
   },
   {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<leader>claude", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    },
+  },
+  {
     "olimorris/codecompanion.nvim",
     config = true,
     dependencies = {
@@ -145,13 +153,5 @@ return {
       require("plugins.codecompanion.plugins.notification").init()
       require("plugins.codecompanion.plugins.autosave")
     end,
-  },
-  {
-    "coder/claudecode.nvim",
-    dependencies = { "folke/snacks.nvim" },
-    config = true,
-    keys = {
-      { "<leader>claude", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-    },
   },
 }
