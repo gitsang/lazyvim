@@ -2,7 +2,7 @@
 
 return {
   {
-    "gitsang/crush.nvim",
+    "gitsang/codock.nvim",
     opts = {
       width = 80, -- Width of the vertical split
       fixed_width = false, -- Whether to fix the width (true = locked, false = adjustable)
