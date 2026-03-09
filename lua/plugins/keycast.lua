@@ -11,7 +11,7 @@ return {
   },
   {
     "hasundue/vim-keycasty",
-    enabled = true,
+    enabled = false,
     dependencies = {
       -- https://docs.deno.com/runtime/getting_started/installation/
       "vim-denops/denops.vim",
