@@ -18,7 +18,7 @@ return {
             pane = 2,
             {
               section = "terminal",
-              cmd = "output=$(fortune -s | cowsay); padding=$(( (14 - $(echo $output | wc -l)) / 2 )); [ $padding -gt 0 ] && printf '%.0s\n' $(seq 1 $padding); echo $output | lolcat; sleep .1",
+              cmd = "output=$(/home/sang/.local/bin/yllm-stats.sh | cowsay -n); padding=$(( (14 - $(echo $output | wc -l)) / 2 )); [ $padding -gt 0 ] && printf '%.0s\n' $(seq 1 $padding); echo $output | lolcat; sleep .1",
               random = 10,
               height = 14,
             },
