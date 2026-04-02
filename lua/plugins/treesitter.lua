@@ -16,7 +16,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function()
+    opt = function()
       -- EL9 / Alma / Rocky Should build from source
       require("nvim-treesitter.install").prefer_git = true
       require("nvim-treesitter.install").compilers = { "gcc" }
