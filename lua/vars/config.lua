@@ -13,18 +13,6 @@ end
 
 local env = load_environments()
 local env_config = with_defaults(env.config or {}, {
-  codecompanion = {
-    language = "English",
-    chat = {
-      adapter = "changeit",
-    },
-    inline = {
-      adapter = "changeit",
-    },
-    cmd = {
-      adapter = "changeit",
-    },
-  },
   net_interface = "eth0",
   default_browser = "none",
   llama = {
