@@ -14,12 +14,12 @@ return {
             local utils = require("codock.utils")
             local selected_text = utils.get_visual_selection_text()
 
-            local result = "Help me translate the following text: \n"
-            result = result .. string.format("\n```\n%s\n```\n\n", selected_text)
-            result = result .. "If text in English, translate it to Chinese;\n"
-            result = result .. "If text in Chinese, translate it to English.\n"
+            local prompt = "Help me translate the following text: \n"
+            prompt = prompt .. string.format("\n```\n%s\n```\n\n", selected_text)
+            prompt = prompt .. "If text in English, translate it to Chinese;\n"
+            prompt = prompt .. "If text in Chinese, translate it to English.\n"
 
-            return result
+            return prompt
           end,
         },
       },
