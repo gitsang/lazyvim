@@ -6,7 +6,23 @@ return {
       fixed_width = false, -- Whether to fix the width (true = locked, false = adjustable)
       codock_cmd = "opencode", -- Command to run in the terminal (crush, opencode, claude, gemini-cli, etc.)
       copy_to_clipboard = false, -- Copy to system clipboard
-      actions = {},
+      actions = {
+        {
+          name = "Translate",
+          description = "Translate selected words",
+          prompts = function()
+            local utils = require("codock.utils")
+            local selected_text = utils.get_visual_selection_text()
+
+            local result = "Help me translate the following text: \n"
+            result = result .. string.format("\n```\n%s\n```\n\n", selected_text)
+            result = result .. "If text in English, translate it to Chinese;\n"
+            result = result .. "If text in Chinese, translate it to English.\n"
+
+            return result
+          end,
+        },
+      },
     },
     cmd = { "Codock", "CodockFilePos", "CodockActions" },
     keys = {
