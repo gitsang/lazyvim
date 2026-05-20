@@ -1,3 +1,4 @@
+# tests
 tt.*
 .tests
 doc/tags
@@ -7,4 +8,13 @@ foo.*
 *.log
 data
 
+# local
 lazy-lock.json
+
+# Agents
+.claude
+.codex
+.omx
+.sisyhus
+.team-debate
+

@@ -25,8 +25,11 @@ return {
     },
     cmd = { "Codock", "CodockFilePos", "CodockActions" },
     keys = {
-      { "<leader>CC", "<cmd>Codock<cr>", desc = "Toggle Codock", mode = { "n", "v" } },
-      { "<leader>CP", ":'<,'>CodockFilePos<cr>", desc = "Copy file path and line info", mode = { "n", "v" } },
+      { "<leader>CCO", "<cmd>Codock opencode<cr>", desc = "Toggle Codock Opencode", mode = { "n", "v" } },
+      { "<leader>CCC", "<cmd>Codock claude<cr>", desc = "Toggle Codock Claude", mode = { "n", "v" } },
+      { "<leader>CCX", "<cmd>Codock omx --madmax --xhigh<cr>", desc = "Toggle Codock Codex", mode = { "n", "v" } },
+      { "<leader>CY", ":'<,'>CodockFilePosYank<cr>", desc = "Copy file position", mode = { "n", "v" } },
+      { "<leader>CP", ":'<,'>CodockFilePosPaste<cr>", desc = "Copy and paste file position", mode = { "n", "v" } },
       { "<leader>CA", ":'<,'>CodockActions<cr>", desc = "Run Codock actions", mode = { "n", "v" } },
     },
   },
