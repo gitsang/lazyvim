@@ -20,8 +20,8 @@ return {
           end,
         },
         {
-          name = "Squash Commit",
-          description = "Squash commit and merge commit messages.",
+          name = "Squash Commit Merge",
+          description = "Merge squashed commit messages.",
           prompts = function()
             local utils = require("codock.utils")
             local selected_text = utils.get_visual_selection_text()
