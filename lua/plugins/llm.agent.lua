@@ -8,16 +8,24 @@ return {
       actions = {
         {
           name = "Translate",
-          description = "Translate selected words",
+          description = "Translate selected words.",
           prompts = function()
             local utils = require("codock.utils")
             local selected_text = utils.get_visual_selection_text()
-
             local prompt = "Help me translate the following text: \n"
             prompt = prompt .. string.format("\n```\n%s\n```\n\n", selected_text)
             prompt = prompt .. "If text in English, translate it to Chinese;\n"
             prompt = prompt .. "If text in Chinese, translate it to English.\n"
-
+            return prompt
+          end,
+        },
+        {
+          name = "Squash Commit",
+          description = "Squash commit and merge commit messages.",
+          prompts = function()
+            local utils = require("codock.utils")
+            local selected_text = utils.get_visual_selection_text()
+            local prompt = "Merge commit messages: " .. selected_text .. "\n"
             return prompt
           end,
         },
