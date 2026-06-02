@@ -24,8 +24,8 @@ return {
           description = "Merge squashed commit messages.",
           prompts = function()
             local utils = require("codock.utils")
-            local selected_text = utils.get_visual_selection_text()
-            local prompt = "Merge commit messages: " .. selected_text .. "\n"
+            local current_file = utils.get_current_file()
+            local prompt = "Merge commit messages: " .. current_file .. "\n"
             return prompt
           end,
         },
