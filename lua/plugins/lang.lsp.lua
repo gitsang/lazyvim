@@ -30,30 +30,21 @@ return {
     },
   },
   {
-    "nvim-lua/plenary.nvim", -- 确保依赖已安装
+    "nvim-lua/plenary.nvim",
     config = function()
-      -- 定义Markdown代码块跳转功能
-      vim.api.nvim_set_keymap(
-        "n",
-        "%",
-        [[<cmd>lua require("markdown_pairs").jump()<CR>]],
-        { noremap = true, silent = true }
-      )
-
-      -- 创建一个Lua模块以供调用
-      _G.markdown_pairs = {}
-      function _G.markdown_pairs.jump()
-        local line = vim.fn.getline(".")
-        if line:match("^```") then
-          local searchDirection = "n"
-          if line:sub(1, 3) == "```" then
-            searchDirection = "b"
-          end
-          vim.fn.search("^```", searchDirection .. "W")
-        else
-          print("Not on a Markdown code block delimiter")
-        end
-      end
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(args)
+          vim.keymap.set("n", "%", function()
+            local line = vim.fn.getline(".")
+            if line:match("^```") then
+              vim.fn.search("^```", "bW")
+            else
+              print("Not on a Markdown code block delimiter")
+            end
+          end, { buffer = args.buf, noremap = true, silent = true, desc = "Jump to markdown code fence pair" })
+        end,
+      })
     end,
   },
   {
