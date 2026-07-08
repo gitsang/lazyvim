@@ -158,4 +158,11 @@ return {
     -- Optional: Lazy load Incline
     event = "VeryLazy",
   },
+  {
+    "lukas-reineke/virt-column.nvim",
+    opts = {
+      char = "▕",
+      virtcolumn = "80,120",
+    },
+  },
 }
