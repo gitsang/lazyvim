@@ -33,9 +33,10 @@ return {
     },
     cmd = { "Codock", "CodockFilePos", "CodockActions" },
     keys = {
-      { "<leader>CCO", "<cmd>Codock opencode<cr>", desc = "Toggle Codock Opencode", mode = { "n", "v" } },
-      { "<leader>CCC", "<cmd>Codock claude<cr>", desc = "Toggle Codock Claude", mode = { "n", "v" } },
-      { "<leader>CCX", "<cmd>Codock omx --madmax --xhigh<cr>", desc = "Toggle Codock Codex", mode = { "n", "v" } },
+      { "<leader>CCO", "<cmd>Codock opencode<cr>", desc = "Open Opencode", mode = { "n", "v" } },
+      { "<leader>CCC", "<cmd>Codock claude<cr>", desc = "Open Claude", mode = { "n", "v" } },
+      { "<leader>CCX", "<cmd>Codock omx --madmax --xhigh<cr>", desc = "Open Codex", mode = { "n", "v" } },
+      { "<leader>CCP", "<cmd>Codock pi<cr>", desc = "Open Pi Agent", mode = { "n", "v" } },
       { "<leader>CY", ":'<,'>CodockFilePosYank<cr>", desc = "Copy file position", mode = { "n", "v" } },
       { "<leader>CP", ":'<,'>CodockFilePosPaste<cr>", desc = "Copy and paste file position", mode = { "n", "v" } },
       { "<leader>CA", ":'<,'>CodockActions<cr>", desc = "Run Codock actions", mode = { "n", "v" } },
