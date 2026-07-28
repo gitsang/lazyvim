@@ -24,4 +24,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "yaml", "yaml.ansible" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})
+
 vim.cmd("packadd nvim.difftool")

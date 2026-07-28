@@ -22,6 +22,11 @@ end
 -- Diagnostics
 keymap({ "n" }, "K", vim.diagnostic.open_float, { desc = "Line Diagnostics", remap = true })
 
+-- Formatting
+keymap({ "n", "x" }, "<A-S-f>", function()
+  LazyVim.format({ force = true })
+end, { desc = "Format" })
+
 -- Disabled
 vim.keymap.del({ "n", "i", "v" }, "<A-j>")
 vim.keymap.del({ "n", "i", "v" }, "<A-k>")
