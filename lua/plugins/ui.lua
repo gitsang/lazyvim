@@ -160,6 +160,7 @@ return {
   },
   {
     "lukas-reineke/virt-column.nvim",
+    enabled = false,
     opts = {
       char = "▕",
       virtcolumn = "80,120",
