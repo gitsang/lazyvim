@@ -8,6 +8,7 @@ return {
     keys = { { "<A-`>", "<cmd>ToggleTerm<cr>", desc = "Toggle floating terminal" } },
     opts = {
       open_mapping = [[<A-`>]],
+      auto_scroll = false, -- 输出时不要自动滚到底部
       direction = "float",
       shade_filetypes = {},
       hide_numbers = true,
