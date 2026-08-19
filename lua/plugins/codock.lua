@@ -31,7 +31,7 @@ return {
         },
       },
     },
-    cmd = { "Codock", "CodockFilePos", "CodockActions" },
+    cmd = { "Codock", "CodockFilePosPaste", "CodockFilePosYank", "CodockActions" },
     keys = {
       { "<leader>CCO", "<cmd>Codock opencode<cr>", desc = "Open Opencode", mode = { "n", "v" } },
       { "<leader>CCC", "<cmd>Codock claude<cr>", desc = "Open Claude", mode = { "n", "v" } },
