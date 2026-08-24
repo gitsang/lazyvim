@@ -5,6 +5,7 @@ return {
       width = 70, -- Width of the vertical split
       codock_cmd = "pi", -- Command to run in the terminal (crush, opencode, claude, gemini-cli, etc.)
       copy_to_clipboard = false, -- Copy to system clipboard
+      header = true, -- Show a one-line header with the slot number above each terminal
       actions = {
         {
           name = "Translate",
