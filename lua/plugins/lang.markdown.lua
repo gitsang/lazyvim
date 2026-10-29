@@ -63,6 +63,10 @@ return {
         highlight = "RenderMarkdownBullet",
         scope_highlight = {},
       },
+      pipe_table = {
+        enabled = true,
+        style = "normal",
+      },
       code = {
         enabled = true,
         render_modes = false,

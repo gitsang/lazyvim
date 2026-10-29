@@ -20,13 +20,12 @@
   (#set! conceal ""))
 
 ; Conceal inline links
+; Only conceal the brackets, keep '(...)' and the destination visible so links
+; render as: 󰖟 documentation(https://example.com)
 (inline_link
   [
     "["
     "]"
-    "("
-    (link_destination)
-    ")"
   ] @markup.link
   (#set! conceal ""))
 
