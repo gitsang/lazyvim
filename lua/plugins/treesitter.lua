@@ -44,6 +44,24 @@ return {
         "highlights",
         read_scm_file(HOME .. "/.config/nvim/lua/plugins/treesitter/queries/markdown/highlights.scm")
       )
+
+      -- Link destinations are kept visible (see the custom markdown_inline query),
+      -- so give them their own color: the default '@markup.link.url' only links to
+      -- 'Underlined', which has no foreground color. Use the colorscheme's 'Comment'
+      -- color + underline so the '(url)' part stands apart from the link text.
+      local function color_url()
+        local comment = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
+        vim.api.nvim_set_hl(0, "@markup.link.url", {
+          fg = comment.fg,
+          ctermfg = comment.ctermfg,
+          underline = true,
+        })
+      end
+      color_url()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("UserMarkdownUrlColor", { clear = true }),
+        callback = color_url,
+      })
     end,
   },
 }

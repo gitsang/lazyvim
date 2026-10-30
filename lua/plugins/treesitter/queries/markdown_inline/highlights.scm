@@ -15,9 +15,9 @@
   (hard_line_break)
 ] @string.escape
 
-; Conceal codeblock and text style markers
-((emphasis_delimiter) @conceal
-  (#set! conceal ""))
+; Text style markers (* _ ~ **) are left alone on purpose: they keep the
+; highlight of the enclosing node, e.g. @markup.italic for emphasis.
+
 
 ; Conceal inline links
 ; Only conceal the brackets, keep '(...)' and the destination visible so links
@@ -45,24 +45,29 @@
   (#set! @_label url @_url))
 
 ; Conceal image links
+; Only conceal the '![]' marker, keep '(...)' and the destination visible so
+; images render as: 󰖟 alt(https://example.com/i.png)
 (image
   [
     "!"
     "["
     "]"
-    "("
-    (link_destination)
-    ")"
   ] @markup.link
   (#set! conceal ""))
 
+; Parentheses of a link destination are visible -> color them like the URL.
+(inline_link
+  ["(" ")"] @markup.link.url)
+
+(image
+  ["(" ")"] @markup.link.url)
+
 ; Conceal full reference links
+; Keep the reference label visible so it renders as: text[label]
 (full_reference_link
-  [
-    "["
-    "]"
-    (link_label)
-  ] @markup.link
+  "[" @markup.link
+  (link_text)
+  "]" @markup.link
   (#set! conceal ""))
 
 ; Conceal collapsed reference links
